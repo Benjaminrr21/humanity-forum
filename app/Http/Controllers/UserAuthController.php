@@ -59,7 +59,7 @@ class UserAuthController extends Controller
         
  
         $user->save();*/
-        $admin = User::find(1);
+        //$admin = User::find(1);
         
         $requestData = $request->all();
         
@@ -67,16 +67,16 @@ class UserAuthController extends Controller
         $path = $request->file('photo')->storeAs('images', $fileName, 'public');
         $requestData["photo"] = '/storage/'.$path;
         $requestData['password'] = Hash::make($requestData['password']);
-        //$requestData['role_id'] = 1;
+        $requestData['role_id'] = 1;
 
-            if ($request->role == "Moderator") {
+           /* if ($request->role == "Moderator") {
             $requestData['role_id'] = 2;
         } elseif ($request->role == "Korisnik") {
             $requestData['role_id'] = 3;
         } else {
             // Log if an unexpected role is encountered
             \Log::warning('Unexpected role encountered: ' . $request->role);
-        }   
+        }   */
 
         
         \Log::info('Final User Data: ' . json_encode($requestData));
@@ -84,7 +84,7 @@ class UserAuthController extends Controller
         User::create($requestData);
 
         //emituj ovaj dogadjaj
-      event(new RegisterUser($requestData['email']));
+      //event(new RegisterUser($requestData['email']));
        //Notification::send($admin,new news($requestData['firstname'],$requestData['email'],$requestData['lastname']));
         //return redirect('employee')->with('flash_message', 'Employee Addedd!');
  
