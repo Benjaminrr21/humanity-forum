@@ -1,0 +1,412 @@
+#content-outer {
+    color: white;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 4rem 0;
+}
+.center {
+    min-width: 50%;
+    color: #1c4966;
+    /* background-color: white; */
+    flex-direction: column;
+    padding: 4rem 3rem;
+    border-radius: 15px;
+}
+#heading {
+    background-color: transparent;
+    color: white;
+    margin-bottom: 3rem;
+}
+.list {
+    display: flex;
+    flex-direction: column;
+}
+.item {
+    border: 1px solid black;
+    border-radius: 13px;
+    border: none;
+    box-shadow: 0 10px 10px 0;
+    padding: 2rem 3rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+    background-color: white;
+    
+}
+.item:hover {
+    transform: scaleX(1.05);
+    transition: 0.4s;
+}
+.item #main {
+    height: 6rem;
+}
+.item #main span {
+    text-align: center;
+    font-size: larger;
+}
+.item #options {
+    display: flex;
+    justify-content: right;
+}
+#btn-option button {
+    background-color: #1c4966;
+    color: white;
+    border-radius: 35px;
+    text-align: center;
+    padding: 1rem;
+}
+#btn-option2 {
+    display: flex;
+}
+#btn-option2 button {
+    background-color: #1c4966;
+    color: white;
+    border-radius: 35px;
+    text-align: center;
+    
+}
+#btn-option button:hover {
+    
+   
+    border: none;
+}
+button i {
+    color: white;
+    font-size: larger;
+}
+#btn-option #close-topic {
+    background-color: red;
+    color: white;
+}
+
+/*background*/
+.modal {
+    position: absolute;
+    display: none;
+    z-index: 1;
+    padding-top: 100px;
+    
+    left: 0;
+    top: 0;
+    background-color: green;
+    width: 700px;
+    height: 700px;
+    text-align: center;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 150px 150px;
+    overflow: hidden;
+    padding: 20px;
+    width: 300px;
+    height: 100px;
+    border: 1px solid #888;
+   
+
+}
+.close {
+    color: black;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+.close:hover {
+    cursor: pointer;
+}
+.center2 {
+    
+        width: 60%;
+        color: #1c4966;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 4rem 3rem;
+        border-radius: 15px;
+    }   
+#heading3 {
+    color: #1c4966;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#mainn {
+    width: 100%;
+    color: #1c4966;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 0.8rem;
+    box-shadow: 0.5px 3px 0px 3px;
+}
+#mainn-comments {
+    width: 100%;
+    color: #1c4966;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    margin-top: 3rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.8rem;
+    box-shadow: 2px 1px 2px 1px;
+}
+#info {
+    display: flex;
+    
+}
+.list-comments {
+    padding: 1rem 5rem 1rem 0rem;
+}
+#info-img { 
+    width: 10%;
+    display: flex;
+    justify-content: left;
+}
+#info-img #imgg {
+    background-position: center;
+    background-image: url('../images/primerlogo1.png');
+    border-radius: 50%;
+    border: none;
+    width: 50%;
+    background-size: cover;
+    
+}
+.image-comment {
+    background-position: center;
+    background-size: cover;
+}
+#info-name {
+    width: 80%;
+    font-size: 1.2rem;
+    text-align: left;
+    color: #888;
+} 
+#content {
+    font-size: 1rem;
+    padding: 1rem 0rem;
+}
+#content-comments {
+    font-size: 0.9rem;
+    padding: 1rem 0rem;
+}
+.comment-name {
+    font-style: italic;
+    font-size: 1.1rem;
+}
+#comment-box {
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+
+}
+#comment {
+    width: 100vh;
+    border: 1px solid black;
+    border-radius: 25px;
+    color: black;
+    padding: 1rem;
+}
+#comment-box button {
+    background-color: #1c4966;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    border: none;
+    padding: 1rem;
+}
+#btn-comm {
+    display: flex;
+    justify-content: right;
+    padding: 0rem 0rem;
+}
+
+#addtopic {
+    font-size: 2.5rem;
+    text-align: center;
+}
+#add-poll {
+    font-size: 1.5rem;
+    text-align: center;
+    background-color: #1c4966;
+    color: white;
+    width: 30%;
+    border-radius: 10px;
+}
+#korak1 {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+#btn {
+    display: flex;
+    justify-content: end;
+}
+#insert-topic-form {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.labelinput2 {
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.labelinput2 input, .labelinput2 textarea {
+    border-radius: 10px;
+    padding: 0.4rem;
+    border: 0.5px solid black;
+
+}
+#material {
+    border: none;
+    display: none;
+}
+#add-material {
+    background-color: #1c4966;
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    width: 35%;
+    border-radius: 20px;
+    margin-top: 0.3rem;
+}
+#insert-topic-form #add-topic {
+    width: 100%;
+    padding: 10px;
+    background-color: #1c4966;
+    color: white;
+    text-align: center;
+    border-radius: 30px;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 20px;
+}
+#insert-topic-form #add-topic:hover {
+    background-color: white;
+    color: #1c4966;
+    transition: 0.34s;
+    border: none;
+}
+#reactions {
+    display: flex;
+    justify-content: start;
+}
+#l1,#l2 {
+    padding: 0 0.5rem;
+}
+.buttons2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.buttons2 button {
+    margin-bottom: 0.7rem;
+}
+#close-topic2 {
+    background-color: red;
+    color: white;
+    
+    padding: 1rem 2.6rem;
+    border-radius: 35px;
+    border: none;
+    
+}
+#close-topic2:hover {
+   
+    transform: scaleX(1.1);
+    transition: 1s;
+    
+}
+.blue-buttons:hover {
+    transform: scaleX(1.1);
+    transition: 1s;
+}
+#my-users {
+    background-color: #1c4966;
+    color: white;
+    
+    padding: 1rem 2.6rem;
+    border-radius: 35px;
+    border: none;
+}
+#seriously {
+    display: none;
+    margin-bottom: 3rem;
+    text-align: center;
+    width: 100%;
+    margin-top: 0;
+    color: #1c4966;
+    background-color: white;
+    padding: 1rem 0;
+}
+.acc2 {
+    background-color: #1c4966;
+    color: white;
+    padding: 0.2rem 1.2rem;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+}
+#reg a{
+    color: white;
+    text-decoration: none;
+}
+#open-topic {
+    background-color: rgb(94, 173, 94);
+    color: white;
+    padding: 1rem;
+    border-radius: 25px;
+    border: none;
+    text-align: center;
+    width: 70%;
+    font-size: large;
+}
+.stand {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.stand button a, #open-topic a {
+    color: white;
+    text-decoration: none;
+    list-style-type: none;
+}
+#standp, #login-topics {
+    color: white;
+    font-size: bold;
+}
+/* #close-topic2 {
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: 1.1rem;
+    border-radius: 20px;
+    border: none;
+    
+}
+.buttons2 {
+    display: flex;
+    justify-content: right;
+} */
+@media only screen and (max-width:900px){
+.center2,#add-material {
+    width: 90%;
+}
+}
+
+#time {
+    color: slategrey;
+}

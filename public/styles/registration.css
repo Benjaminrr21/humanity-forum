@@ -1,0 +1,134 @@
+#reg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    height: 95vh;
+    
+}
+#reg-container-inner {
+    min-width: 35rem;
+    background-color: white;
+    padding: 35px;
+    border-radius: 15px;
+    margin-top: 10rem;
+}
+#reg-container-inner h1 {
+    color: #1c4966;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+#form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.labelinput {
+    display: flex;
+    margin-bottom: 13px;
+} 
+
+.dupli {
+    display: flex;
+    justify-content: space-between;
+}
+.dupli div {
+    width: 50%;
+}
+.labelinput input  {
+    width: 100%;
+    border-bottom: 1px solid #1c4966;
+    border-left: 1px solid #1c4966;
+    padding: 7px;
+}
+.labelinput input.radio  {
+    width: 15px;
+    margin-right: 10px;
+    border: none;
+    border-bottom: 1px solid #1c4966;
+    border-left: 1px solid #1c4966;
+    padding: 7px;
+    padding-top: 12px;
+}
+.labelinput input#file  {
+    width: 200px;
+
+}
+.labelinput input#checkbox  {
+    width: 50px;
+
+}
+#form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1c4966;
+    color: white;
+    text-align: center;
+    border-radius: 30px;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 20px;
+}
+#label-photo {
+    background-color: #1c4966;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
+}
+i {
+    color: #1c4966;
+    text-align: center;
+    width: 30px;
+    font-size: larger;
+    margin-top: 10px;
+}
+#photo2 {
+    color: white;
+    text-align: center;
+    width: 30px;
+    font-size: larger;
+    margin-top: 0;
+}
+
+
+#progress {
+    display: flex;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-bottom: 0.7rem;
+}
+#match {
+    display: flex;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-bottom: 0.7rem;
+}
+#progress-bar {
+    width:100%;
+    background-color: blue;
+    border-radius: 20px;
+}
+#progress-bar {
+    font-size: smaller;
+    text-align: center;
+    color: white;
+}
+#match-text {
+    font-size: small;
+    text-align: center;
+    color: red;
+}
+
+#moderator-text {
+    font-size: small;
+    
+}
+.labelinputt {
+    width: 30rem;
+}
+
+#msg2 {
+    color: rgb(207, 83, 83);
+}
