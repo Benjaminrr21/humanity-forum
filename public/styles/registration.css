@@ -40,7 +40,7 @@
     width: 100%;
     border-bottom: 1px solid #1c4966;
     border-left: 1px solid #1c4966;
-    padding: 7px;
+    padding: 8px;
 }
 .labelinput input.radio  {
     width: 15px;
@@ -132,3 +132,7 @@ i {
 #msg2 {
     color: rgb(207, 83, 83);
 }
+.labelinput small {
+    font-size: x-small;
+}
+

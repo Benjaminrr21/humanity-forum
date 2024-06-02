@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/index.css') }}">
@@ -87,7 +89,7 @@
                 </li>
                 @else
                 <li id="logout">
-                    <a href="{{ route('logout') }}" ><i class="ri-logout-box-line"></i> {{Auth::user()->role_id}}Odjavi se</a>
+                    <a href="{{ route('logout') }}" ><i class="ri-logout-box-line"></i> Odjavi se</a>
                 </li>
                 @endguest
                 <li>

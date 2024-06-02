@@ -56,4 +56,4 @@ $response = $kernel->handle(
 
 $kernel->terminate($request, $response);
 
-ob_end_flush();
+//ob_end_flush();

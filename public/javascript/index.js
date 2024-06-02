@@ -1,3 +1,10 @@
+document.getElementById("log").addEventListener("click",()=>{
+    alert("Sss")
+})
+function see(){
+    document.getElementById("loading").style.display='flex';
+    
+}
 
 var email = document.getElementById("email");
 const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -38,3 +45,4 @@ document.getElementById('menu-toggle').addEventListener('click', function() {
     
 document.querySelector('.nav-bar').classList.toggle('active');
 })
+

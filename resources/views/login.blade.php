@@ -33,9 +33,7 @@
         <div id='reg-container-inner'>
             <h1>Prijava</h1>
             {{-- @if ($msg = Session::get('msg')) --}}
-            @if($msg = Session::get("msg"))
-            <h4>{{$msg}}</h4>
-            @endif
+            <h4>Korisničko ime Vam je poslato na mejl adresu.</h4>
            {{--  @endif --}}
             <div id='form'>
                 <form action="{{ route('login_user') }}" method='post'>

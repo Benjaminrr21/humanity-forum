@@ -34,12 +34,15 @@ Route::get('/home', function () {
 })->name('registration'); */
 
 Route::get('registration',[UserAuthController::class, 'RegForm'])->name('registration');
-
+Route::get('/probb',function(){
+    return view("probb");
+});
 Route::post('/register',[UserAuthController::class,'register_user'])->name('register_user');
 Route::post('/change-password/{id}',[UserAuthController::class,'updatePassword'])->name('changeP');
 Route::delete('/deleteuser/{id}',[UserAuthController::class,'deleteuser'])->name('deleteuser');
 Route::post('/acceptuser/{id}',[UserAuthController::class,'acceptuser'])->name('acceptuser');
-
+Route::post('/checkcode/{c}',[UserAuthController::class,'checkCode'])->name('checkcode');
+Route::get('/wait',[UserAuthController::class,"waitPage"])->name('wait');
 Route::get('/login',[UserAuthController::class, 'LoginForm'])->name('login');
 Route::post('/login_user',[UserAuthController::class,'login_user'])->name('login_user');
 Route::get('logout',[UserAuthController::class,'logout'])->name('logout');

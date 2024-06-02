@@ -21,6 +21,7 @@ header {
     z-index: 2;
     top: 0;
     left: 0;
+
 }
 button {
     cursor: pointer;
@@ -110,14 +111,13 @@ background-color: transparent;
 
 .content {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     position: relative;
     z-index: 1;
-    height: auto;
-    background-image: url('../images//naslovna2.png');
+    background-image: url('../images//Wave3.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 3rem 0;
+    padding: 2rem 0;
     background-attachment: fixed;
 }
 
@@ -132,15 +132,25 @@ background-color: transparent;
     padding-top: 130px;
     
 }
+#reg-containerr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    height: 95vh;
+    
+}
 
 #reg-container-inner {
-    min-width: 35rem;
+    width: 50%;
     background-color: white;
     padding: 25px;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
 }
 #reg-container-inner2 {
-    min-width: 35rem;
+    width: 100%;
     background-color: white;
     padding: 25px;
     border-radius: 15px;
@@ -230,11 +240,11 @@ i {
 #homepage-container {
     display: flex;
     justify-content: left;
-    padding: 200px 100px;
+    padding: 220px 100px;
 }
 .heading {
     
-    width: 50%;
+    width: 70%;
     display: flex;
     justify-content: start;
 }
@@ -247,7 +257,7 @@ i {
 
 .heading h1 {
     font-size: 70px;
-    color: white;
+    color: #fefefe;
     text-align: left;
     line-height: 75px;
 }
@@ -259,6 +269,7 @@ i {
 #reg-container2 {
     display: flex;
     justify-content: center;
+    width: 100%;
 
 }
 #logout a {
@@ -292,13 +303,14 @@ a:active {
     }
     .content {
         background-color: #fefefe;
+        padding-top: 7rem;
     }
    
     #heading2 {
         justify-content: center;
         width: 100%;
     }
-    #heading {
+    #heading,#heading-inner {
         justify-content: left;
         width: 100%;
     }
@@ -310,6 +322,9 @@ a:active {
         width:80%;
         padding: 0 3rem;
         
+    }
+    #reg-container-inner2 {
+        margin: 10px;
     }
 
 }
@@ -418,4 +433,82 @@ color: #1c4966;
     padding: 2rem 4rem;
     opacity: 0.86;
     border: none;
+}
+
+
+.lds-ring,
+.lds-ring div {
+  box-sizing: border-box;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin: 4px;
+  border: 4px solid #1c4966;
+
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    display: none;
+}
+
+
+
+
+#logoimg {
+    background-image: url('/images/logo-bcg2.png');
+background-position: center;
+background-size: cover;
+background-color: transparent;
+height: 80px;
+width: 80px;
+background-position: center;
+border-radius: 1px solid black;
+}
+#hh {
+    padding-top: 1rem;
+}
+.titlee {
+    color: #1c4966;
+    text-align: center;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+#demo {
+    color: #1c4966;
+    font-size: bold;
 }

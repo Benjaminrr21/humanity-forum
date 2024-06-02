@@ -3,7 +3,7 @@
 <div id='homepage-container'>
     <div class='heading'>
         <div id='heading-inner'>
-            <h1>Neka tvoja humanitarnost bude primećena.</h1>
+            <h1>Neka tvoja humanost bude primećena.</h1>
             <p>Mesto gde humanitarnost i saosećanje sa drugima izlazi na videlo.</p>
         </div>
     </div>
@@ -11,13 +11,17 @@
     <div id='heading2'>
     <div id='reg-container2'>
         <div id='reg-container-inner2'>
-            <h1>Prijava</h1>
+            <div class="titlee">
+                <div id="logoimg"></div>
+                <div id="hh"><h1>Prijava</h1></div>
+            </div>
             @if($message = Session::get('message'))
             <div id="incorrect">
                 {{$message}}
             </div>
             @endif
             <div id='form'>
+              
                 <form action="{{ route('login_user') }}" method='post'>
                     @csrf
 
@@ -32,10 +36,15 @@
                         <input type='password'placeholder='Lozinka' name='password' autocomplete="new-password"></input>
                         
                     </div>
-                    <a href="{{route('change-password')}}" style="color: #1c4966;">Zaboravio/la si sifru ?</a>
+                    <a href="{{route('change-password')}}" style="color: #1c4966; margin-left:1.7rem;">Zaboravio/la si sifru ?</a>
 
-
-                    <button type='submit'><i class="ri-login-circle-line"></i> Prijavi se</button>
+                    <div id="loading">
+                        <div class="lds-ring"><div></div><div></div><div></div><div>
+                               
+                        </div></div>
+                        <div><p><i>Prijavljivanje u toku...</i></p></div> 
+                    </div>
+                    <button id="log" onclick="see()" type='submit'><i class="ri-login-circle-line"></i> Prijavi se</button>
                 </form>
             </div>
         </div>
@@ -55,4 +64,8 @@
     @endif
 
 </div>
+
 @endsection
+<script src="javascript/index.js">
+
+</script>

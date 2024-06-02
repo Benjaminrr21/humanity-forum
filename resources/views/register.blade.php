@@ -11,7 +11,7 @@
     @extends('layout.index')
     @section('content')
         <div id='reg-container'>
-            <div id='reg-container-inner'>
+            <div class="left" id='reg-container-inner'>
                 <h1>Registracija</h1>
                 <div id='form'>
                     <form action="{{ route('register_user') }}" method='post' enctype="multipart/form-data">
@@ -19,29 +19,45 @@
                        <div class='dupli'>
                         <div class='labelinput'>
                                 <i class='bx bxs-user-rectangle' ></i>
-                                <input type='text' placeholder='Ime' id='firstname' name='firstname'></input>
+                                <input class="reg" type='text' placeholder='Ime' id='firstname' name='firstname'></input>
                         </div>
                         <div class='labelinput'>
                                 
-                                <input type='text'placeholder='Prezime' id='lastname' name='lastname'></input>
+                                <input class="reg" type='text'placeholder='Prezime' id='lastname' name='lastname'></input>
                         </div>
                        </div>
                        <div class='labelinput'>
                                 <i class='bx bx-envelope' ></i>
-                                <input type='email'placeholder='Email' id='email' name='email'></input>
+                                <input class="reg" type='email'placeholder='Email' id='email' name='email'></input>
                         </div>
                         <div class='dupli'>
                         <div class='labelinput'>
                                 <i class='bx bx-location-plus' ></i>
-                                <input type='text' placeholder='Drzava rodjenja' id='country' name='country'></input>
+                                <select  style="width: 100%;" name="country" id="country">
+                                    <option value="" disabled>Izaberi zemlju</option>
+                                    <option value="Srbija">Srbija</option>
+                                    <option value="BiH">Bosna i Hercegovina</option>
+                                    <option value="Hrvatska">Hrvatska</option>
+                                    <option value="Severna Makedonija">Severna Makedonija</option>
+                                    <option value="Crna Gora">Crna Gora</option>
+                                </select>
+{{--                                 <input type='text' placeholder='Drzava rodjenja' id='country' name='country'></input> --}}
                         </div>
+                    
                         <div class='labelinput'>
-                                <input type='text'placeholder='Grad rodjenja' id='city' name='city'></input>
+                            <select  style="width: 100%;" name="city" id="city">
+                                <option value="" disabled>Izaberi grad</option>
+                                <option value="Beograd" >Beograd</option>
+                                <option value="Novi Pazar" >Novi Pazar</option>
+                                <option value="Nis" >Nis</option>
+                               
+                            </select>
                         </div>
                        </div>
+                   
                        <div class='labelinput'>
                             <i class="ri-calendar-event-line"></i>
-                                <input type='text'placeholder='Datum rodjenja' id='dateofbirth' name='dateofbirth'></input>
+                                <input type="date" placeholder='Datum rodjenja' id='dateofbirth' name='dateofbirth'></input>
                        </div>
                        <div class='dupli'>
                        <i class="ri-men-line"></i>
@@ -54,16 +70,20 @@
                        </div>
                        <div class='labelinput'>
                             <i class="ri-command-line"></i>
-                                <input type='text'placeholder='JMBG' name='JMBG'></input>
+                                <input class="reg" type='text'placeholder='JMBG' name='JMBG'></input>
                        </div>
                        <div class='labelinput'>
                             <i class='bx bx-phone' ></i>
-                                <input type='text'placeholder='Broj telefona' name='phone'></input>
+                                <input type='text'placeholder='Broj telefona' name='phone'>
+                                   
+                                </input>
                        </div>
                        
-                       <div class='labelinput'>
-                            <i class="ri-lock-line"></i>
-                                <input type='password'placeholder='Lozinka' name='password'></input>
+                       <div style="flex-direction: column;" class='labelinput'>
+                            
+                                <input class="reg" type='password'placeholder='Lozinka' name='password'>
+                                </input>
+                                <small>Lozinka mora sadrzati najmanje jedno veliko slovo, jedan broj i jedan specijalan znak. </small>
                        </div>
                       
                         <div class='labelinput'>
@@ -88,15 +108,21 @@
                         <div class='labelinputt' id="par">
                                 <small id="moderator-text"></small>
                        </div>
-                        <button type='submit'>Registruj se</button>
+                       <div id="loading">
+                        <div class="lds-ring"><div></div><div></div><div></div><div>
+                               
+                        </div></div>
+                        <div><p><i>Registracija u toku...</i></p></div> 
+                    </div>
+                        <button  onclick="reg()" type='submit'>Registruj se</button>
                        
                     </form>
                 </div>
             </div>
         </div>    
-        <script>
+        <script src="{{asset('javascript/regex.js')}}">
 
-        function change(){
+        /* function change(){
             
         }
            function displayImagePreview() {
@@ -119,7 +145,7 @@
         
         reader.readAsDataURL(file);
     }
-}
+} */
         </script>
         @endsection
      </body>

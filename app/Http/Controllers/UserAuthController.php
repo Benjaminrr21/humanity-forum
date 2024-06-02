@@ -20,6 +20,7 @@ use App\Events\messageUser;
 use App\Events\MessageFromAdmin;
 
 use App\Mail\EmailMessager;
+use App\Mail\SendCode;
 
 use App\Models\Newss;
 
@@ -32,7 +33,7 @@ class UserAuthController extends Controller
     }
     public function RegForm()
     {
-        return view('register');
+        return view('probb');
     }
  
     public function register_user(Request $request)
@@ -67,29 +68,54 @@ class UserAuthController extends Controller
         $path = $request->file('photo')->storeAs('images', $fileName, 'public');
         $requestData["photo"] = '/storage/'.$path;
         $requestData['password'] = Hash::make($requestData['password']);
-        $requestData['role_id'] = 1;
+        //$requestData['role_id'] = 1;
 
-           /* if ($request->role == "Moderator") {
+        $code = mt_rand(100000,999999);
+
+        Mail::to($requestData['email'])->send(new SendCode([
+            'code'=>$code
+        ]));
+
+            if ($request->role == "Moderator") {
             $requestData['role_id'] = 2;
         } elseif ($request->role == "Korisnik") {
             $requestData['role_id'] = 3;
         } else {
             // Log if an unexpected role is encountered
             \Log::warning('Unexpected role encountered: ' . $request->role);
-        }   */
+        }   
 
         
         \Log::info('Final User Data: ' . json_encode($requestData));
 
-        User::create($requestData);
+        //User::create($requestData);
 
         //emituj ovaj dogadjaj
       //event(new RegisterUser($requestData['email']));
        //Notification::send($admin,new news($requestData['firstname'],$requestData['email'],$requestData['lastname']));
         //return redirect('employee')->with('flash_message', 'Employee Addedd!');
- 
+        $user = new User();
+        $user->firstname = $requestData['firstname'];
+        $user->lastname = $requestData['lastname'];
+        $user->JMBG = $requestData['JMBG'];
+        $user->dateofbirth = $requestData['dateofbirth'];
+        $user->country = $requestData['country'];
+        $user->city = $requestData['city'];
+        $user->email = $requestData['email'];
+        $user->password = $requestData['password'];
+        $user->gender = $requestData['gender'];
+        $user->photo = $requestData['photo'];
+        $user->phone = $requestData['phone'];
+        $user->role_id = $requestData['role_id'];
+    
+        // Čuvanje korisnika u bazi
+        $user->save();
         //return back();
-        return view('login')->with('msg',"Vas zahtev je poslat administratoru. Uskoro ce vam stici korisnicko ime kojim mozete da se prijavite.");
+        //return view('login')->with(['msg'=>"Vas zahtev je poslat administratoru. Uskoro ce vam stici korisnicko ime kojim mozete da se prijavite.","code"=>$code]);
+        return view("wait")->with(['msg'=>"Poslat je šestocifreni kod za registraciju.","code"=>$code,"user"=>$user]);
+    }
+    public function waitPage(){
+        return view("wait");
     }
  
     public function LoginForm()
