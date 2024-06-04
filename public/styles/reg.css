@@ -75,5 +75,8 @@ border-radius: 1px solid black;
     #imgs {
         flex-direction: column;
     }
+    #im {
+        margin-top: 1rem;
+    }
 
 }

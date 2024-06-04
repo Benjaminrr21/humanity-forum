@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Poll;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\DatabaseNotification;
 
 use App\Models\Answer;
 
@@ -44,8 +46,10 @@ class TopicController extends Controller
 
 
         $topic->save();
+       Notification::send($admin,new news($requestData['firstname'],$requestData['email'],$requestData['lastname']));
 
-        return redirect()->route('topic-id',['id'=>$topic->id]);
+
+        //return redirect()->route('topic-id',['id'=>$topic->id]);
         }
     }
     public function getById($id){
@@ -200,6 +204,13 @@ class TopicController extends Controller
             'ta' => $topicAverage,
             'time' => $difference
         ]);
+    }
+
+    public function deleteTopic($id){
+        $t = Topic::find($id);
+        $t->delete();
+        return back()->with('success',"Zahtev je odbijen.");
+
     }
     
 

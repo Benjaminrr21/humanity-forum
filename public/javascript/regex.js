@@ -7,6 +7,7 @@ var regexPatterns = [
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
 ];
+var global = true;
 
 //alert(regexPatterns.length)
 var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -23,8 +24,10 @@ for (let i = 0; i < regexElements.length; i++) {
         // Validacija vrednosti input polja
         if (!regex.test(e.currentTarget.value)) {
             e.currentTarget.style.backgroundColor = 'rgb(243, 176, 176)';
+            global = false;
         } else {
             e.currentTarget.style.backgroundColor = 'rgb(152, 199, 152)';
+            global = true;
         }
     });
     regexElements[i].addEventListener("focusout", function(e) {
@@ -47,6 +50,10 @@ for (let i = 0; i < regexElements.length; i++) {
 });*/
 var c = document.querySelector("#country");
 var c2 = document.querySelector("#city");
+var role = document.querySelector("#role");
+role.addEventListener("change",function(){
+    console.log("Promenjena rola.");
+})
 
 c.addEventListener("change",function(){
     while (c2.options.length) {
@@ -86,6 +93,28 @@ c.addEventListener("change",function(){
         break;
     }
 });
+function validateForm() {
+    var fname = document.getElementById("fname");
+    var lname = document.getElementById("lname");
+    var email = document.getElementById("email");
+    var jmbg = document.getElementById("jmbg");
+    var password = document.getElementById("password");
+    var isValid = true;
+    var form = document.getElementById("form");
+    var inputs = form.querySelectorAll('input');
+    inputs.forEach(function(input) {
+        if (input.value.trim() === '' && input.hasAttribute('name')) {
+            isValid = false;
+            input.style.backgroundColor = 'rgb(243, 176, 176)';
+        }
+      
+        else {
+            input.style.backgroundColor = 'white';
+        }
+    });
+    return isValid;
+}
+
 
 function change(c){
     console.log("Change event detected on countrySelect");
@@ -113,9 +142,60 @@ switch (c.value) {
 }
 }
 
+document.getElementById('form').addEventListener("submit",function(e){
+    if(!validateForm()){
+        document.getElementById("inc").style.display = "flex";
 
+        return;
+    }
+    else{
+        document.getElementById("loading").style.display='flex';
+        document.getElementById("form").submit;
+    }
+});
 
 function reg(){
-    document.getElementById("loading").style.display='flex';
+     if(!validateForm() || global == false){
+         alert(global)
+
+         document.getElementById("form").addEventListener("submit",function(e){
+            e.preventDefault();
+            document.getElementById("inc").style.display = "flex";
+        document.getElementById("loading").style.display='none';
+
+         })
+      
+    }
+    else{
+        document.getElementById("loading").style.display='flex';
+        document.getElementById("inc").style.display = "none";
+
+        document.getElementById("form").submit();
+    }
     
+    
+    
+    
+}
+
+function displayImagePreview() {
+    var fileInput = document.getElementById('photo');
+    var file = fileInput.files[0];
+    
+    if (file) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            var img = document.createElement('img');
+            img.src = e.target.result;
+            img.width = 150; // Adjust image width as needed
+            img.height = 150; // Adjust image height as needed
+            
+            var p = document.getElementById('pp');
+            p.innerHTML = ''; // Clear existing content
+            p.appendChild(img);
+        };
+        
+        reader.readAsDataURL(file);
+    }
 }

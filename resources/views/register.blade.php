@@ -100,7 +100,7 @@
                         <div class='labelinput'>
                             <label for="role">Registrujem se kao: </label>
 
-                                <select onchange="change()" id="role" class="role"  name='role' value=''>
+                                <select  id="role" class="role"  name='role' value=''>
                                     <option value="Moderator">Moderator</option>
                                     <option value="Korisnik">Korisnik</option>
                                 </select>

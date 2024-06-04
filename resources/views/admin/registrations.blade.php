@@ -14,17 +14,16 @@
             <h2>Zahtevi za registraciju</h2>
             @forelse($requests as $r)
             <div id="one-request">
-                <div class="one-request-item" id="mail"><p>{{$r->firstname}}</p></div>
-                <div class="one-request-item" id="mail"><p>{{$r->lastname}}</p></div>
-                <div class="one-request-item" id="mail"><p>{{$r->email}}</p></div>
+                <div class="one-request-item" id="mail"><p>{{$r->name}}</p></div>
+                <div class="one-request-item" id="mail"><p>{{$r->content}}</p></div>
                 <div class="one-request-item">
-                    <form action="{{ route('acceptuser', $r->id) }}" method="post">
+                    <form action="{{ route('acceptTopic', $r->id) }}" method="post">
                         @csrf
                         <button id="accept" type="submit" class="btn btn-danger btn-sm" id="decline">Odobri</button>
                       </form>
                 </div>
                 <div class="one-request-item">
-                    <form action="{{ route('deleteuser', $r->id) }}" method="post">
+                    <form action="{{ route('deletetopic', $r->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" id="decline">Delete</button>

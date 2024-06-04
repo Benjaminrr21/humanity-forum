@@ -41,6 +41,7 @@ Route::post('/register',[UserAuthController::class,'register_user'])->name('regi
 Route::post('/change-password/{id}',[UserAuthController::class,'updatePassword'])->name('changeP');
 Route::delete('/deleteuser/{id}',[UserAuthController::class,'deleteuser'])->name('deleteuser');
 Route::post('/acceptuser/{id}',[UserAuthController::class,'acceptuser'])->name('acceptuser');
+Route::post('/accepttopic/{id}',[UserAuthController::class,'acceptTopic'])->name('acceptTopic');
 Route::post('/checkcode/{c}',[UserAuthController::class,'checkCode'])->name('checkcode');
 Route::get('/wait',[UserAuthController::class,"waitPage"])->name('wait');
 Route::get('/login',[UserAuthController::class, 'LoginForm'])->name('login');
@@ -63,6 +64,7 @@ Route::get('/open-topic/{id}',[TopicController::class,'openTopic'])->name('open-
 Route::post('/follow-topic/{idTopic}/{idUser}',[TopicController::class,'followTopic'])->name('follow-topic');
 Route::get('/my-topics/{idUser}',[TopicController::class,'myTopics'])->name('my-topics');
 Route::get('/topics-by-moderator/{idModerator}',[TopicController::class,'topicsOfModerator'])->name('topics-by-moderator');
+Route::delete('/delete-topic/{id}',[TopicController::class,'deleteTopic'])->name('deletetopic');
 
 Route::get('/search',[TopicController::class,'search'])->name('search');
 

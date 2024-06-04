@@ -15,26 +15,27 @@
        <div id="whole">
         <div class="titlee">
             <div id="logoimg"></div>
-            <div id="hh"><h1>Registracija</h1></div>
+            <div id="hh"><h1>Registracija</h1><p id="inc" style="text-align: center; color:red; display:none; font-style:italic;">Podaci nisu pravilno uneti.</p></div>
+            
         </div>
         <div class="leftright">
             <div class="left">
                 
-                    <form action="{{ route('register_user') }}" method='post' enctype="multipart/form-data">
+                    <form id="form" action="{{ route('register_user') }}" method='post' enctype="multipart/form-data">
                             @csrf
                        <div class='dupli'>
                         <div class='labelinput'>
                                 <i class='bx bxs-user-rectangle' ></i>
-                                <input class="reg" type='text' placeholder='Ime' id='firstname' name='firstname'></input>
+                                <input class="reg" id="fname" type='text' placeholder='Ime' id='firstname' name='firstname'></input>
                         </div>
                         <div class='labelinput'>
                                 
-                                <input class="reg" type='text'placeholder='Prezime' id='lastname' name='lastname'></input>
+                                <input class="reg" id="lname" type='text'placeholder='Prezime' id='lastname' name='lastname'></input>
                         </div>
                        </div>
                        <div class='labelinput'>
                                 <i class='bx bx-envelope' ></i>
-                                <input class="reg" type='email'placeholder='Email' id='email' name='email'></input>
+                                <input class="reg" id="email" type='email'placeholder='Email' id='email' name='email'></input>
                         </div>
                         <div class='dupli'>
                             <div class='labelinput'>
@@ -75,7 +76,7 @@
                         </div>
                         <div class='labelinput'>
                             <i class="ri-command-line"></i>
-                                <input class="reg" type='text'placeholder='JMBG' name='JMBG'></input>
+                                <input class="reg" type='text'placeholder='JMBG' name='JMBG' id="jmbg"></input>
                        </div>
                        <div class='labelinput'>
                         <i class='bx bx-phone' ></i>
@@ -93,7 +94,7 @@
                     
                     <div style="flex-direction: column;" class='labelinput'>
                          
-                             <input class="reg" type='password'placeholder='Lozinka' name='password'>
+                             <input class="reg" id="password" type='password'placeholder='Lozinka' name='password'>
                              </input>
                              <small>Lozinka mora sadrzati najmanje jedno veliko slovo, jedan broj i jedan specijalan znak. </small>
                     </div>
@@ -104,7 +105,7 @@
                              <input onchange="displayImagePreview()" id="photo" type='file' placeholder='Fotografija' name='photo'></input>
                              </label>
                          </div>
-                             <div style="width: 150px; height:150px; border:1px solid black; margin-left:1rem;">
+                             <div id="im" style="width: 150px; height:150px; border:1px solid black; margin-left:1rem;">
                                  <p id="pp"></p>
                              </div>
                              
@@ -112,7 +113,7 @@
                      <div class='labelinput'>
                          <label for="role">Registrujem se kao: </label>
 
-                             <select onchange="change()" id="role" class="role"  name='role' value=''>
+                             <select  id="role" class="role"  name='role' value=''>
                                  <option value="Moderator">Moderator</option>
                                  <option value="Korisnik">Korisnik</option>
                              </select>

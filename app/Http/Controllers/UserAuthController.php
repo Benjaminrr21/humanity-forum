@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Topic;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -191,7 +192,7 @@ class UserAuthController extends Controller
 
     //FOR ADMIN
     public function getRegistrationsView(){
-        $requests = User::where('isAccepted',null)->get();
+        $requests = Topic::where('isAccepted',null)->get();
         return view('admin.registrations')->with('requests',$requests);
     }
     public function requestIsSend(){
@@ -209,6 +210,7 @@ class UserAuthController extends Controller
         return back()->with('success',"Zahtev je odbijen.");
 
     }
+    
     public function acceptuser($id){
          $u = User::find($id);
         $niz = ["#", "_"];
@@ -228,6 +230,14 @@ class UserAuthController extends Controller
             'name' => $u->name,
             'username' => $loginname
         ]));
+
+        return back()->with('success',"Zahtev je odobren.");
+
+    }
+    public function acceptTopic($id){
+        $t = Topic::find($id);
+        $t->isAccepted = 1;
+        $t->save();
 
         return back()->with('success',"Zahtev je odobren.");
 
