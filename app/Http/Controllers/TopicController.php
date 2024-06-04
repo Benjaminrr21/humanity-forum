@@ -46,6 +46,8 @@ class TopicController extends Controller
 
 
         $topic->save();
+      event(new RegisterUser($requestData['email']));
+
        Notification::send($admin,new news($requestData['firstname'],$requestData['email'],$requestData['lastname']));
 
 
