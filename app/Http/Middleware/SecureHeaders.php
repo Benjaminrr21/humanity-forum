@@ -16,7 +16,12 @@ class SecureHeaders
     public function handle(Request $request, Closure $next): Response
     {
         $response = $next($request);
-        $response->header('X-Content-Type-Options','nosniff');
+        $response->headers->set('X-Content-Type-Options', 'nosniff');
+
+        // Osiguravanje da su kolačići secure
+        foreach ($response->headers->getCookies() as $cookie) {
+            $cookie->setSecure(true);
+        }
         return $response;
     }
 }
