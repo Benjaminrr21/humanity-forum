@@ -5,13 +5,52 @@
 </html>
 @extends('layout.index')
 @section('content')
+
     <div id="outerr5">
         <div id="mainn5">
 
         <div id='innerr5'>
             <h1>Obaveštenja na forumu </h1>
 
-            <div id="flexx">
+            <table id="admin-messagess">
+                <tr>
+                    <th>Vest:</th>
+                    <th>Poslato od:</th>
+                    <th>Vreme:</th>
+                </tr>
+                @foreach ($news as $n)
+
+                <tr>
+                    <td>{{$n->content}}</td>
+                    <td>{{$n->owner}}</td>
+                    <td>{{$n->created_at}}</td>
+                </tr>
+                @endforeach
+
+            </table>
+            <h1>Obaveštenja od moderatora tema koje pratite </h1>
+
+            <table id="admin-messagess">
+                <tr>
+                    <th>Vest:</th>
+                    <th>Poslato od:</th>
+                    <th>Tema:</th>
+                    <th>Vreme:</th>
+                </tr>
+                @foreach ($news2 as $n2)
+                @if(Auth::user()->following()->get()->contains($n2->topic_id))
+                <tr>
+                    <td>{{$n2->content}}</td>
+                    <td>{{$n2->owner}}</td>
+                    <td>{{$topics->find($n2->topic_id)->name}}</td>
+                    <td>{{$n2->created_at}}</td>
+                </tr>
+                @endif
+                @endforeach
+
+            </table>
+
+           {{--  <div id="flexx">
                 @foreach ($news as $n)
                 <p>Vest:</p>
                 <h6>{{$n->content}}</h6>
@@ -23,7 +62,7 @@
             </div>
             
                 
-            @endforeach
+            @endforeach --}}
     
         </div>
         

@@ -78,6 +78,7 @@
     flex-direction: column;
     display: flex;
     justify-content: center;
+    padding: 5rem 0;
 }
 #inner5-button {
 display: flex;
@@ -121,4 +122,19 @@ color: white;
 #flexx h6 {
     font-size: larger;
     margin: 0.5rem 1.3rem;
+}
+#admin-messagess td, #admin-messagess th {
+    padding: 0.5rem 0.8rem;
+}
+#admin-messagess th{
+    background-color: #1c4966;
+    color: white;
+}
+#admin-messagess tr:hover{
+    background-color: #1c4966;
+    color: white;
+    transition: 1s;
+}
+#admin-messagess {
+    margin-bottom: 2.2rem;
 }

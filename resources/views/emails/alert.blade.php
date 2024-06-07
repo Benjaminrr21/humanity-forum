@@ -1,0 +1,1 @@
+<p>Vaše reakcije na forumu naišle su na najveći broj nesviđanja od strane korisnika (pratioca) foruma u proteklom periodu.</p>

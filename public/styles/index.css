@@ -111,14 +111,18 @@ background-color: transparent;
 
 .content {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     z-index: 1;
     background-image: url('../images//Wave3.svg');
     background-repeat: no-repeat;
     background-size: cover;
     padding: 2rem 0;
+    background-position: center;
     background-attachment: fixed;
+}
+#news:hover {
+    color: #1c4966;
 }
 
 
@@ -302,6 +306,15 @@ a:active {
         padding: 100px 20px;
     }
     .content {
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+        z-index: 1;
+        background-image: url('../images//Wave3.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 2rem 0;
+        background-attachment: fixed;
         background-color: #fefefe;
         padding-top: 7rem;
     }
@@ -422,6 +435,15 @@ color: #1c4966;
     opacity: 0.8;
     border-radius: 25px;
     margin-bottom: 1rem;
+}
+#incorrect-span {
+    color: white;
+    background-color: rgb(190, 137, 137);
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 12px;
+
 }
 #view-topics {
     background-color: white;

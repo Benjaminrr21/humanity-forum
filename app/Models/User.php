@@ -48,6 +48,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function myTopics(){
         return $this->belongsToMany(Topic::class);
     }
+    public function likedComments()
+{
+    return $this->belongsToMany(Comment::class, 'comment_user_like')->withTimestamps();
+}
 
     /**
      * The attributes that should be hidden for serialization.

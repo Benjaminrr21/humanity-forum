@@ -18,6 +18,7 @@ class Topic extends Model
         'numOfFollowers',
         'isOpen',
         'content',
+        'file_path',
         'moderator_id'
     ];
     public function comments(){

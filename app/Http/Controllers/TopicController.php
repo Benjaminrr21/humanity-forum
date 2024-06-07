@@ -10,6 +10,17 @@ use App\Models\Comment;
 use App\Models\Poll;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
+use App\Events\RegisterUser;
+use App\Notifications\news;
+use App\Models\Newss2;
+use Illuminate\Support\Facades\Auth;
+use App\Events\MessageFromModerator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Alert;
+
+
+
+
 use Illuminate\Notifications\DatabaseNotification;
 
 use App\Models\Answer;
@@ -18,18 +29,18 @@ class TopicController extends Controller
 {
     //
     public function getAll(){
-        $topics = Topic::where('isOpen',1)->get(); 
+        $topics = Topic::all(); 
         return view('topics.list')->with('topics',$topics);
     }
     public function topicIndex(){
-        return view('topics.addTopic');
+        return view('topics.addTopic')->with("num",Topic::where("owner_id",Auth::user()->id)->count());
     }
     public function create(Request $r,$id){
         $topic = new Topic();
 
         $topics = Topic::where('owner_id',$id)->where('isOpen',1)->get();
         if($topics->count()==2) 
-        return 'NEUSPELO. IMATE VISE OD 2 TEME.';
+        return back()->with("message",'Neuspelo. Imate više od dve otvorene teme.');
 
         else{
         $topic->name = $r->name;
@@ -37,6 +48,7 @@ class TopicController extends Controller
         $topic->isOpen = 1;
         $topic->owner_id = $id; 
         $topic->content = $r->content;
+        $topic->isAccepted = 0;
 
         if ($r->hasFile('file')) {
             $fileName = time() . $r->file('file')->getClientOriginalName();
@@ -45,13 +57,14 @@ class TopicController extends Controller
         }
 
 
-        $topic->save();
-      event(new RegisterUser($requestData['email']));
+      event(new RegisterUser($topic->name));
+      $admin = User::where("role_id",1)->first();
 
-       Notification::send($admin,new news($requestData['firstname'],$requestData['email'],$requestData['lastname']));
+       Notification::send($admin,new news($topic->name));
+       $topic->save();
 
 
-        //return redirect()->route('topic-id',['id'=>$topic->id]);
+        return redirect()->route('topic-id',['id'=>$topic->id]);
         }
     }
     public function getById($id){
@@ -99,20 +112,37 @@ class TopicController extends Controller
         ///$us = User::find($idModerator);
         //$topics = Topic::where('owner_id',$idUser)->get();
         $myTopics = Topic::where('owner_id',$idModerator)->get();
-        return view('topics.list')->with('topics',$myTopics);
+        return view('topics.topicsByModerator')->with('topics',$myTopics);
     }
 
     public function myTopics($idUser){
         $user = User::find($idUser);
         //$topics = Topic::where('owner_id',$idUser)->get();
-        return view('topics.list')->with('topics',$user->following);
+        return view('topics.myTopics')->with('topics',$user->following);
+    }
+    public function getBadUser($idTopic){
+        $t = Topic::find($idTopic);
+        $flws = $t->followers()->get();
+        $comments = $t->comments()->get();
+
+        $maxDislikesComment = $comments->sortByDesc('dislikes')->first();
+
+        $badUser = $maxDislikesComment ? $maxDislikesComment->user : null;
+        
+        return $badUser;
     }
     public function myUsers($id){
         $t = Topic::find($id);
         //$myusers = User::where('id',$t->owner_id)->get();
         $myusers = $t->followers;
+        $bu = $this->getBadUser($id);
+
         //return redirect()->route('my-users',['id'=>$id])->with('users',$myusers);
-        return view('topics.myUsers')->with(['users'=>$myusers,'topic'=>$t]);
+        return view('topics.myUsers')->with(['users'=>$myusers,'topic'=>$t,'baduser'=>$bu]);
+    }
+    public function alert($email){
+        Mail::to($email)->send(new Alert([]));
+        return back();
     }
     public function addPollIndex($id){
         $t = Topic::find($id);
@@ -153,7 +183,7 @@ class TopicController extends Controller
         $a3->save();
         
         $p = Poll::find($id);
-        return redirect()->route('poll',['id'=>$p->id]);
+        return view('pollIndex')->with('poll',$p);
         //return view('pollIndex')->with('poll',$p);
     }
     public function pollWithId($id){
@@ -167,10 +197,12 @@ class TopicController extends Controller
         $a->votes = $a->votes+1;
         $a->save();
         //return view('topics.topicById')->with('topic',$t);
-        return view('pollIndex')->with('poll',$a->poll);
+        return back()->with(['poll'=>$a->poll,'isvote'=>'yes']);
     }
-    public function deletePoll(){
-
+    public function deletePoll($id){
+        $p = Poll::find($id);
+        $p->delete();
+        return redirect()->route('topic-id',['id'=>$p->topic->id]);
     }
     public function openStatistic($id){
         // Pronalazak teme
@@ -214,6 +246,33 @@ class TopicController extends Controller
         return back()->with('success',"Zahtev je odbijen.");
 
     }
+
+    public function addNews(Request $r,$id){
+        $n = new Newss2();
+        $n->content = $r->name;
+        $n->owner = "Moderator";
+        $n->topic_id = $id;
+        $n->save();
+
+        $t = Topic::find($n->topic_id);
+        $followers = Topic::find($n->topic_id)->followers()->get();
+        foreach ($followers as $f) {
+            # code...
+        event(new MessageFromModerator("Stigla je nova vest od moderatora teme ".$t->name.".",$f->id));
+        }
+        
+
+        return back();
+
+    }
+    public function addNewsIndex2($id){
+        return view('admin.addNews2')->with("t",$id);
+    }
+    public function getNewsFromMyTopics(){
+        $news = Newss2::where("topic_id");
+    }
+
+    
     
 
 }

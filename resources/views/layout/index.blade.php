@@ -21,7 +21,7 @@
 
     <script>
         var loggedInUser = {!! auth()->check() ? json_encode(auth()->user()) : 'null' !!};
-        console.log(loggedInUser.role_id);
+        console.log(loggedInUser.id);
 
 
         // Enable pusher logging - don't include this in production
@@ -47,6 +47,26 @@
             console.log(data);
             document.getElementById("n").style.color = "red";
       });
+      if(loggedInUser.role_id == 3){
+      //alert(loggedInUser.role_id)
+        channel.bind('message-from-moderator'+loggedInUser.id, function(data) {
+            alert(data.message);
+           // console.log(data);
+            document.getElementById("n").style.color = "red";
+      });
+    }
+     //if(loggedInUser.role_id == 2){
+          if(loggedInUser.role_id==2){
+        channel.bind('topic-accept'+loggedInUser.id, function(data) {
+            document.getElementById("n").style.color = "green";
+            document.getElementById("n").style.fontWeight = "bold";
+            alert(data.mess);
+            
+      }); 
+      } 
+    
+     
+      
     //}
       </script>
 </head>
@@ -76,6 +96,14 @@
                     <a href="{{route('my-topics',['idUser'=>Auth::user()->id])}}" ><i class="ri-message-3-line"></i> Teme koje pratim</a>
                 </li>
                 @endif
+                @if(Auth::user() && Auth::user()->role_id == 1)
+                {{-- <li>
+                    <a href="/topics" ><i class="ri-message-3-line"></i> Teme</a>
+                </li> --}}
+                <li>
+                    <a href="/topics"><i class="ri-message-3-line"></i> Sve teme</a>
+                </li>
+                @endif
                 
                 @if(Auth::user() && Auth::user()->role_id == 1) 
                     <li class="dropdown">
@@ -83,6 +111,22 @@
                         
                     </li>
                 @endif
+                <li>
+                    <form action="{{route('search')}}" method="GET">
+                    <input name='search' type="text" id="search" placeholder="Pretraga...">
+                    <button type="submit" id="search-button"><i class="ri-search-line"></i></button>
+                    </form>
+                </li>
+                @if(Auth::user() && Auth::user()->role_id == 1)
+                <li>
+                    <a id="news" href="/addnews"><span style="color: white;">Pošalji vest</span></a>
+                </li>
+                @else
+                <li>
+                    <a id="news" href="/news"><span id="n" style="color: white;">Vesti</span></a>
+
+                </li>
+                @endif  
                 @guest
                 <li>
                     <a href="{{ route('registration') }}" ><i class="ri-login-box-line"></i> Registracija</a>
@@ -92,22 +136,8 @@
                     <a href="{{ route('logout') }}" ><i class="ri-logout-box-line"></i> Odjavi se</a>
                 </li>
                 @endguest
-                <li>
-                    <form action="{{route('search')}}" method="GET">
-                    <input name='search' type="text" id="search" placeholder="Pretraga...">
-                    <button type="submit" id="search-button"><i class="ri-search-line"></i></button>
-                    </form>
-                </li>
-                @if(Auth::user() && Auth::user()->role_id == 1)
-                <li>
-                    <a href="/addnews"><span style="color: white;">Pošalji vest</span></a>
-                </li>
-                @else
-                <li>
-                    <a href="/news"><span id="n" style="color: white;">Vesti</span></a>
-
-                </li>
-                @endif               
+                
+                             
                 
                 
             </ul>

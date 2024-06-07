@@ -14,10 +14,13 @@
     padding: 4rem 3rem;
     border-radius: 15px;
 }
-#heading {
-    background-color: transparent;
+#heading, #login-topics {
+    background-color: #1c4966;
+    opacity: 0.7;
     color: white;
+    font-weight: bold;
     margin-bottom: 3rem;
+    padding: 1rem;
 }
 .list {
     display: flex;
@@ -157,12 +160,30 @@ button i {
     padding: 0.8rem;
     box-shadow: 2px 1px 2px 1px;
 }
+#mainn-comments2 {
+    width: 90%;
+    color: #1c4966;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.8rem 0rem 0.8rem 1.2rem;
+    box-shadow: 1px 1px 1px 1px;
+}
+#repl {
+    font-size: 1.2rem;
+    
+    text-align: right;
+}
 #info {
     display: flex;
     
 }
 .list-comments {
-    padding: 1rem 5rem 1rem 0rem;
+    padding: 2rem;
 }
 #info-img { 
     width: 10%;
@@ -230,7 +251,9 @@ button i {
     justify-content: right;
     padding: 0rem 0rem;
 }
-
+#reactions {
+    display: flex;
+}
 #addtopic {
     font-size: 2.5rem;
     text-align: center;
@@ -342,6 +365,21 @@ button i {
     border-radius: 35px;
     border: none;
 }
+#my-users2 {
+    background-color: #1c4966;
+    color: white;
+    
+    padding: 0.5rem;
+    border-radius: 20px;
+    border: none;
+}
+#my-users3 {
+    background-color: red;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border: none;
+}
 #seriously {
     display: none;
     margin-bottom: 3rem;
@@ -401,12 +439,53 @@ button i {
     display: flex;
     justify-content: right;
 } */
+#num {
+    font-size: 1rem;
+    text-align: center;
+}
 @media only screen and (max-width:900px){
 .center2,#add-material {
     width: 90%;
+}
+#content {
+    background-size: cover;
+}
+#reactions {
+    flex-direction: column;
 }
 }
 
 #time {
     color: slategrey;
+}
+
+
+#closed {
+    color:white; 
+    background-color:rgb(202, 140, 140); 
+    padding:0.5rem ; 
+    position: relative; 
+    text-align:center;
+    border-radius: 0 16px 0 16px;
+    opacity: 0.8;
+    
+}
+#options-outer {
+    display: flex;
+}
+.emoji {
+    font-size: 1.5rem;
+    border: 0.5px solid black;
+    margin: 0rem;
+}
+.emoji:hover {
+    cursor: pointer;
+}
+#reply {
+    padding: 0 1rem;
+}
+#reply input {
+    border-radius: 15px;
+    border-bottom: 1px solid black;
+    padding: 0.3rem;
 }

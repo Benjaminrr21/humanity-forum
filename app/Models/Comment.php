@@ -14,7 +14,8 @@ class Comment extends Model
     protected $fillable = [
         'id',
         'content',
-        'likes'
+        'likes',
+        'dislikes',
     ];
     public function topic(){
         return $this->belongsTo(Topic::class);
@@ -22,4 +23,11 @@ class Comment extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
+    public function likedByUsers()
+{
+    return $this->belongsToMany(User::class, 'comment_user_like')->withTimestamps();
+}
 }

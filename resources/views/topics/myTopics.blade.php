@@ -22,7 +22,7 @@
             <div class="item">
                 <div id="main">
                     <h1>{{ $topic->name }}</h1>
-                    <span><i class="ri-group-fill"></i> {{ $topic->numOfFollowers }}</span>
+                    <span><i class="ri-group-fill"></i> {{ $topic->followers->count() }}</span>
                 </div>
                 <div id="options">
                     <div id="btn-option">
@@ -31,7 +31,7 @@
                         </form>
                     </div>
                     <div id="btn-option">
-                        <a href="{{ route('topic-id',['id'=>$topic->id]) }}"><button ><i class="ri-add-circle-fill"></i> Otvori</button></a>
+                        <a href="{{ route('topic-id',['id'=>$topic->id]) }}"><button ><i class="ri-edit-2-line"></i> Uđi u temu</button></a>
                     </div>        
                         <div id="myModal" class="modal">
                                 aaa

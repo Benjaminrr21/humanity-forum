@@ -65,8 +65,10 @@ Route::post('/follow-topic/{idTopic}/{idUser}',[TopicController::class,'followTo
 Route::get('/my-topics/{idUser}',[TopicController::class,'myTopics'])->name('my-topics');
 Route::get('/topics-by-moderator/{idModerator}',[TopicController::class,'topicsOfModerator'])->name('topics-by-moderator');
 Route::delete('/delete-topic/{id}',[TopicController::class,'deleteTopic'])->name('deletetopic');
+Route::get('/alert',[TopicController::class,'alert'])->name('alert');
 
 Route::get('/search',[TopicController::class,'search'])->name('search');
+Route::post('/addnews2/{id}',[TopicController::class,'addNews'])->name('add-news2');
 
 Route::get('/add-poll/{id}',[TopicController::class,'addPollIndex'])->name('add-poll');
 Route::post('/create-poll/{idT}/{idM}',[TopicController::class,'createPoll'])->name('create-poll');
@@ -76,7 +78,8 @@ Route::delete('/delete-poll/{id}',[TopicController::class,'deletePoll'])->name('
 
 Route::post('/vote',[TopicController::class,'vote'])->name('vote');
 Route::post('/addnews',[UserAuthController::class,'addNews'])->name('add-news');
-Route::get('/addnews',[UserAuthController::class,'addNewsIndex']);
+Route::get('/addnews',[UserAuthController::class,'addNewsIndex'])->name("news");
+Route::get('/addnews2/{id}',[TopicController::class,'addNewsIndex2'])->name("news2");
 Route::get('/news',[UserAuthController::class,'viewNews']);
 
 Route::get('/my-users/{id}',[TopicController::class,'myUsers'])->name('my-users');
@@ -85,6 +88,8 @@ Route::get('/my-users/{id}',[TopicController::class,'myUsers'])->name('my-users'
 Route::post('/add-comment/{idTopic}/{idUser}',[CommentController::class,'addComment'])->name('add-comment');
 Route::post('/like-comment/{commentId}',[CommentController::class,'like']);
 Route::post('/dislike-comment/{commentId}',[CommentController::class,'dislike']);
+Route::post('/add-reply/{cid}/{uid}/{tid}',[CommentController::class,'addReply'])->name('add-reply');
+Route::delete('/delete-comment/{id}',[CommentController::class,'delete'])->name('delete-comment');
 Route::get('/request-send',[UserAuthController::class,'requestIsSend'])->name('request-is-send');
 
 Route::get('/statistic/{id}',[TopicController::class,'openStatistic'])->name('statistic');

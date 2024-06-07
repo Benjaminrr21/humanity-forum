@@ -15,15 +15,18 @@
         <p>Nema otvorenih tema.</p>
         @else
     
-         <div id="heading">Teme koje pratim</div>
+         <div id="heading" style="color: white; padding:0.7rem; border-radius:15px;">Moje teme</div>
         
          <div class="list">
             @foreach($topics as $topic)
             <div class="item">
+                @if($topic->isOpen==0)<span id="closed" ><i style="color: white;" class="ri-key-line"></i> Zatvorena</span>@endif
+
                 <div id="main">
                     <h1>{{ $topic->name }}</h1>
                     <span><i class="ri-group-fill"></i> {{ $topic->numOfFollowers }}</span>
                 </div>
+                
                 <div id="options">
                     <div id="btn-option">
                         <form method="POST" action="{{route('follow-topic',['idUser'=>Auth::user()->id,'idTopic'=>$topic->id])}}">
@@ -31,18 +34,28 @@
                         </form>
                     </div>
                     <div id="btn-option">
-                        <a href="{{ route('topic-id',['id'=>$topic->id]) }}"><button ><i class="ri-add-circle-fill"></i> Otvori</button></a>
-                    </div>        
-                        <div id="myModal" class="modal">
+                        <a href="{{ route('topic-id',['id'=>$topic->id]) }}"><button><i class="ri-add-circle-fill"></i> Upravljaj temom</button></a>
+                    </div> 
+                    <div id="btn-option">
+                        <form action="{{ route('deletetopic', ['id' => $topic->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button style="background-color: rgb(202, 140, 140); border:none; margin-left:0.2rem;" type="submit"><i class="ri-add-circle-fill"></i> Izbriši temu</button>
+                        </form>
+                    </div>
+                   
+                </div>   
+                
+                
+            </div>    
+                        {{-- <div id="myModal" class="modal">
                                 aaa
                                 <div class="modal-content">
                                     <span class="close">&times;</span>
                                     <p>Zatvaranje teme...</p>
                                 </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
+                        </div> --}}
+                  
             @endforeach
              
         </div>

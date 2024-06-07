@@ -18,82 +18,52 @@
     <div class="center">
         
         @if($topics->count()==0)
-          @if(Auth::user() && (Auth::user()->role_id == 3 || Auth::user()->role_id==1))
-          <p id="login-topics">Nema otvorenih tema.</p>
-
-          @else
-          <div class="stand">
-          <p id="standp">Nemate otvorenih tema.</p>
-          <button id="open-topic"><a href='/add-topic'>Otvori temu</a></button>
-          </div>
-          @endif
+          <p  id="login-topics">Nema otvorenih tema.</p>
+   
         @else
-        @if(Auth::user() && Auth::user()->role_id == 1)
-        <div id="heading">Sve teme</div>
-        @else
-        <div id="heading">Otvorene teme</div>
-        @endif
-         <div class="list">
+            <div id="heading">Sve teme</div>
+            
+            <div class="list">
             @foreach($topics as $topic)
             <div class="item">
+                @if($topic->isOpen==0)<span id="closed" >Zatvorena</span>@endif
                 <div id="main">
                     <h1>{{ $topic->name }}</h1>
+                    
                     <span><i class="ri-group-fill"></i> {{ $topic->followers->count() }}</span>
-                    @if(Auth::user() && Auth::user()->role_id == 1)
                     <p>Moderator: <a style="color: #1c4966;" href='mailto:{{$topic->moderator->email}}'><b>{{$topic->moderator->username}}</b></a></p>
-                    @endif
+                    
                 </div>
                 <div id="options">
+                    
                     @if(Auth::user() && Auth::user()->role_id==3)
-
-                    <div id="btn-option">
-                        @if($topic->followers->contains(Auth::user()->id))
-                        <form  action="{{route('topic-id',['id'=>$topic->id])}}">
-                            @csrf
-                        <button><i class="ri-edit-2-line"></i> Uđi u temu</button>
-                        </form>
-                        <form  action="{{route('poll',['id'=>$topic->id])}}">
-                            @csrf
-                        <button><i class="ri-edit-2-line"></i> Odradi anketu</button>
-                        </form>
-                        @else
-                        <form method="POST" action="{{route('follow-topic',['idUser'=>Auth::user()->id,'idTopic'=>$topic->id])}}">
-                            @csrf
-                        <button><i class="ri-add-circle-fill"></i> Pridruži se temi</button>
-                        </form>
-                        
-                       @endif
-                       
-                    </div>
-                    @endif
-                    @if($topic->owner_id == Auth::user()->id)
-                    <div id="btn-option">
-                        <a href="{{ route('topic-id',['id'=>$topic->id]) }}"><button ><i class="ri-add-circle-fill"></i> Upravljaj temom</button></a>
-                    </div> 
-                    @endif
-                    {{-- @else --}}
-                   {{--  <div id="btn-option">
-                            @csrf
-                        <button onclick="notRegister()"><i class="ri-add-circle-fill"></i> Pridruži se temi</button>
-                    </div> --}}
-                    {{-- <div id="btn-option">
-                        <a href="{{ route('topic-id',['id'=>$topic->id]) }}"><button ><i class="ri-add-circle-fill"></i> Upravljaj temom</button></a>
-                    </div>  --}}
-{{--                     @endif   
- --}}                        <div id="myModal" class="modal">
-                                aaa
-                                <div class="modal-content">
-                                    <span class="close">&times;</span>
-                                    <p>Zatvaranje teme...</p>
-                                </div>
+                        @if(Auth::user()->following->contains($topic->id))
+                            <div id="btn-option">   
+                                <form  action="{{route('topic-id',['id'=>$topic->id])}}">
+                                    @csrf
+                                <button><i class="ri-edit-2-line"></i> Uđi u temu</button>
+                                </form>
                             </div>
-                    </div>
+                        @else
+                        <div id="btn-option">   
+                            <form method="POST" action="{{route('follow-topic',['idUser'=>Auth::user()->id,'idTopic'=>$topic->id])}}">
+                                @csrf
+                            <button><i class="ri-add-circle-fill"></i> Pridruži se temi</button>
+                            </form>
+                        </div>
+                        @endif
+                    @endif
+                
+                    
+                    
                 </div>
-            </div>
+                </div>
             @endforeach
-             
+
+            </div>
         </div>
         @endif
+        
     </div>
 </div>
 

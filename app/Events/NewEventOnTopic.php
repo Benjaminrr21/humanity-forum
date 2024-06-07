@@ -10,20 +10,16 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageFromModerator implements ShouldBroadcast
+class NewEventOnTopic
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public $message;
-    public $followerId;
-    public function __construct($message,$followerId)
+    public function __construct()
     {
         //
-        $this->message = $message;
-        $this->followerId = $followerId;
     }
 
     /**
@@ -34,10 +30,7 @@ class MessageFromModerator implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('admin-message'),
+            new PrivateChannel('channel-name'),
         ];
-    }
-    public function broadcastAs(){
-        return 'message-from-moderator'.$this->followerId;
     }
 }

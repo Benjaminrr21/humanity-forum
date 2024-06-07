@@ -10,20 +10,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageFromModerator implements ShouldBroadcast
+class TopicAccepted implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public $message;
-    public $followerId;
-    public function __construct($message,$followerId)
+    public $topic;
+    public $mess;
+    public $moderatorId;
+
+    public function __construct($topic, $mess, $moderatorId)
     {
-        //
-        $this->message = $message;
-        $this->followerId = $followerId;
+        $this->topic = $topic;
+        $this->mess = $mess;
+        $this->moderatorId = $moderatorId;
     }
 
     /**
@@ -31,13 +33,13 @@ class MessageFromModerator implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn()
     {
-        return [
-            new Channel('admin-message'),
-        ];
+         
+         return new Channel('admin-message');
+        
     }
     public function broadcastAs(){
-        return 'message-from-moderator'.$this->followerId;
+        return 'topic-accept'.$this->moderatorId;
     }
 }

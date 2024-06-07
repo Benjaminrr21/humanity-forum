@@ -12,7 +12,7 @@
         <div id='innerr5'>
             <br>
             <h1>Anketa za temu:</h1> 
-            <h1 id="nametopic">{{$poll->topic->name}}</h1>
+            {{-- <h1 id="nametopic">{{$poll->topic->name}}</h1> --}}
 
             <br>
             <br>
@@ -40,9 +40,15 @@
                 @else
                 <div class="one-request-item" id="mail2">
                     <p> 
+                        @if($isvote = Session::get('isvote'))
+                            
+
+                            <span><i class="ri-group-fill"></i> {{$a->votes}}</span>
+                          
+                        @else
                         <span><input type="radio" name="ans" value="{{$a->id}}"></span>
                         <span><i class="ri-group-fill"></i> {{$a->votes}}</span>
-
+                        @endif
                     </p>
                 </div>
                 @endif
@@ -54,7 +60,11 @@
         </div>
         <div id="inner5-button">
             @if(Auth::user()->role_id==2)
-        <button type="submit">Izbrisi anketu</button>
+           {{--  <form action="{{ route('delete-poll', ['id' => $id]) }}" method="POST">
+                @csrf
+                @method('DELETE') --}}
+                <button style="background-color: rgb(202, 140, 140); border:none; margin-left:0.2rem;" type="submit"><i class="ri-add-circle-fill"></i> Izbriši anketu</button>
+            {{-- </form> --}}
         @else
         <button id="b" type="submit" style="background-color:#1c4966; " >Pošalji odgovor</button>
         @endif

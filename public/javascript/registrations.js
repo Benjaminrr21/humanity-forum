@@ -29,3 +29,22 @@ function sendRequestFromJS(method,route){
   
     location.reload();
   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Kreiranje niza x sa 500 nasumičnih brojeva
+    
+
+    //const x = Array.from({ length: 500 }, () => Math.random());
+
+    const x = [10,15,20];
+    // Definisanje traga za histogram
+    const trace = {
+        x: x,
+        type: 'histogram',
+    };
+
+    const data = [trace];
+
+    // Kreiranje novog grafikona u elementu sa ID-jem 'mainn5'
+    Plotly.newPlot('innerr5', data);
+});

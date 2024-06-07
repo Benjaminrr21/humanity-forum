@@ -19,11 +19,13 @@ use App\Notifications\news;
 use App\Events\RegisterUser;
 use App\Events\messageUser;
 use App\Events\MessageFromAdmin;
+use App\Events\TopicAccepted;
 
 use App\Mail\EmailMessager;
 use App\Mail\SendCode;
 
 use App\Models\Newss;
+use App\Models\Newss2;
 
 class UserAuthController extends Controller
 {
@@ -134,7 +136,7 @@ class UserAuthController extends Controller
         if (Auth::attempt($credetials)) {
             //return redirect('/home')->with('success', 'Login Success');
            if(Auth::user()->role_id==2)
-             return view('topics.addTopic');
+             return view('topics.addTopic')->with("num",Auth::user()->myTopics()->count());
             return view('home');
             
         }
@@ -192,7 +194,7 @@ class UserAuthController extends Controller
 
     //FOR ADMIN
     public function getRegistrationsView(){
-        $requests = Topic::where('isAccepted',null)->get();
+        $requests = Topic::where('isAccepted',0)->get();
         return view('admin.registrations')->with('requests',$requests);
     }
     public function requestIsSend(){
@@ -238,6 +240,10 @@ class UserAuthController extends Controller
         $t = Topic::find($id);
         $t->isAccepted = 1;
         $t->save();
+        //event(new TopicAccepted($t->name,"Vasa tema je odobrena."));
+        
+        $moderatorId = $t->owner_id; // Pretpostavljam da imate moderator_id kolonu u tabeli topics
+        event(new TopicAccepted($t->name, "Vasa tema" .$t->name. "je odobrena.", $t->owner_id));
 
         return back()->with('success',"Zahtev je odobren.");
 
@@ -267,7 +273,9 @@ class UserAuthController extends Controller
     }
     public function viewNews(){
         $news = Newss::all();
-        return view('news')->with('news',$news);
+        $news2 = Newss2::all();
+        $topics = Topic::all();
+        return view('news')->with(['news'=>$news,'news2'=>$news2,'topics'=>$topics]);
     }
 
 }

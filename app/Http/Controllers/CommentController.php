@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Reply;
 
 class CommentController extends Controller
 {
@@ -23,13 +24,22 @@ class CommentController extends Controller
         return back();
     }
     public function like($commentId){
-        $c = Comment::find($commentId);
-        if ($c) {
-            $c->likes = $c->likes + 1;
-            $c->save();
-            return 'ok';
+        $comment = Comment::find($commentId);
+        $user = auth()->user();
+    
+        if (!$comment) {
+            return response()->json(['message' => 'Comment not found'], 404);
         }
-        return 'Comment not found';
+    
+        if ($comment->likedByUsers()->where('user_id', $user->id)->exists()) {
+            return response()->json(['message' => 'Already liked'], 400);
+        }
+    
+        $comment->likedByUsers()->attach($user->id);
+        $comment->likes += 1;
+        $comment->save();
+    
+        return response()->json(['message' => 'ok', 'likesCount' => $comment->likes], 200);
     }
     
     public function dislike($commentId){
@@ -40,5 +50,21 @@ class CommentController extends Controller
             return 'ok';
         }
         return 'Comment not found';
+    }
+    public function addReply(Request $r,$idC,$idU,$idT){
+        $reply = new Reply();
+        $reply->content = $r->content;
+        $reply->comment_id = $idC;
+        $reply->user_id = $idU;
+        $reply->topic_id = $idT;
+        $reply->save();
+
+        return back();
+
+    }
+    public function delete($id){
+        $c = Comment::find($id);
+        $c->delete();
+        return back();
     }
 }

@@ -19,6 +19,7 @@ padding: 5rem ;
 }
 #table-div table {
     width: 100%;
+    margin-top: 2rem;
 }
 #table-div table td {
     padding: 0.5rem;

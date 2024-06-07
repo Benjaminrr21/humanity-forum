@@ -5,7 +5,7 @@
         <div id='heading-inner'>
             <h1>Neka tvoja humanost bude primećena.</h1>
             <p>Mesto gde humanitarnost i saosećanje sa drugima izlazi na videlo.</p>
-            <span style="color:green;">SPAN</span>
+            
         </div>
     </div>
     @guest
@@ -61,7 +61,16 @@
             </div>
         </div>
     </div>
-@endif
+    @endif
+    @if(Auth::check() && Auth::user()->role_id == 2 )
+    <div id='heading2'>
+        <div id='reg-container2'>
+            <div id='reg-container-inner2' style="padding: 5rem; padding-top:8rem; background-color:transparent;">
+                <a href="/add-topic"><button id="view-topics"><i style="color:#1c4966;" class="ri-links-line"></i>Dodaj novu temu</button></a>
+            </div>
+        </div>
+    </div>
+    @endif
     @endif
 
 </div>

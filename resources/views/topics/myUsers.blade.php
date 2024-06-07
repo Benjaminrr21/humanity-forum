@@ -29,7 +29,14 @@
         
         @else
         
-
+        <span id="user-options" style="background-color: rgb(86, 134, 86); padding:0.3rem; margin:0 1rem 3rem 0; color:white;">Nepoželjni korisnik je: </span>
+        @if($baduser == Session::Get($baduser))
+        <p>{{$baduser->username}}</p>
+        <a href="{{route('alert')}}"><button id="user-options2">Upozori</button></a>
+        @else
+        <span>Nema nepoželjnih korisnika.</span>
+        @endif
+        
         <table id="tbl">
         <tbody>
             <tr>

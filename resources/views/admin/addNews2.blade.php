@@ -5,9 +5,9 @@
 </html>
 <div id="content-outer">
     <div class="center2">
-        <div id="addtopic">Pošaljite opštu vest svim korisnicima foruma</div>
-        <form action="{{route('add-news')}}" method="post"  enctype="multipart/form-data">
-        
+
+        <div id="addtopic">Pošaljite obaveštenje svim pratiocima vaše teme</div>
+        <form action="{{route('add-news2',['id'=>$t])}}" method="post"  enctype="multipart/form-data">
         @csrf
             <div id='insert-topic-form'>
             <div class="labelinput2">

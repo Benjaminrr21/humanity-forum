@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{asset('styles/registrations.css')}}">
+        <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
     </head>
 </html>
 @extends('layout.index')
@@ -9,24 +10,25 @@
         <div id="mainn5">
 
         <div id='innerr5'>
-            <h1>Statistika za temu </h1>
+            <h1>Statistika za temu</h1>
             <h1 id="imeteme">{{$topic->name}}</h1>
             
-<p><i style="color: #1c4966;" class="ri-user-voice-line"></i> Broj pratioca: {{$topic->followers->count()}}</p>
-<p><i class="ri-calendar-schedule-line"></i> Datum kreiranja: {{$topic->created_at}}</p>
+            
+<p><i style="color: #1c4966;" class="ri-user-voice-line"></i> Broj pratioca: <b>{{$topic->followers->count()}}</b></p>
+<p><i class="ri-calendar-schedule-line"></i> Datum kreiranja: <b>{{$topic->created_at}}</b></p>
 
-<p><i class="ri-timer-2-line"></i> Duzina trajanja teme na forumu: {{$time}}</p>
+<p><i class="ri-timer-2-line"></i> Duzina trajanja teme na forumu: <b>{{$time}}</b></p>
 
-<p><i class="ri-chat-thread-line"></i> Prosecan broj tema u odnosu na sve teme: {{$ta}}%</p>
-<p><i class="ri-user-voice-line"></i> Prosecan broj pratioca u odnosu na sve korisnike foruma: {{$ta}}%</p>
+<p><i class="ri-chat-thread-line"></i> Prosecan broj tema u odnosu na sve teme: <b>{{$ta}}</b>%</p>
+<p><i class="ri-user-voice-line"></i> Prosecan broj pratioca u odnosu na sve korisnike foruma: <b>{{$ta}}</b>%</p>
         </div>
         
     </div> 
 
 
     </div>
-    <script src="{{asset('javascript/registrations.js')}}"></script>
 @endsection
+<script src="{{asset('javascript/registrations.js')}}"></script>
 
 {{-- 
 @forelse($user->notifications as $notif)

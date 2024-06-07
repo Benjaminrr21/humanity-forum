@@ -14,12 +14,11 @@ class news extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($email,$firstname,$lastname)
+    public function __construct($email)
     {
         //
         $this->email = $email;
-        $this->firstname = $firstname;
-        $this->lastname = $lastname;
+       
         //$this->userdata = $userdata;
     }
 
@@ -53,8 +52,7 @@ class news extends Notification
     {
         return [
             'email' => $this->email,
-            'firstname' => $this->firstname,
-            'lastname' => $this->lastname
+           
 
         ];
     }
