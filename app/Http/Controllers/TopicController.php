@@ -64,7 +64,8 @@ class TopicController extends Controller
        $topic->save();
 
 
-        return redirect()->route('topic-id',['id'=>$topic->id]);
+       return "KREIRANA TEMA";
+        //return redirect()->route('topic-id',['id'=>$topic->id]);
         }
     }
     public function getById($id){
