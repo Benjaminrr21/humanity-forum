@@ -23,6 +23,7 @@ use App\Events\TopicAccepted;
 
 use App\Mail\EmailMessager;
 use App\Mail\SendCode;
+use App\Mail\Deleted;
 
 use App\Models\Newss;
 use App\Models\Newss2;
@@ -289,6 +290,16 @@ class UserAuthController extends Controller
         $topics = Topic::all();
         $followers = follower::all();
         return view('news')->with(['news'=>$news,'news2'=>$news2,'topics'=>$topics,'followers'=>$followers]);
+    }
+    public function get_users_view(){
+        $users = User::all();
+        return view('all_users')->with('users',$users);
+    }
+    public function delete_user_classic($id){
+        $u = User::find($id);
+        $u->delete();
+        Mail::to($u->email)->send(new Deleted());
+        return back();
     }
 
 }

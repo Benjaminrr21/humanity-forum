@@ -60,6 +60,11 @@ background-color: transparent;
     background: white;
     transition: 0.7s;
 }
+.nav-bar ul li a:hover {
+    color: #11101b;
+    background: white;
+    transition: 0.7s;
+}
 
  .nav-bar ul li a.active {
      background-color: white;
@@ -227,7 +232,6 @@ background-color: transparent;
     border-radius: 15px;
 }
 i {
-    color: white;
     text-align: center;
     width: 30px;
     font-size: larger;
@@ -245,7 +249,8 @@ i {
 #homepage-container {
     display: flex;
     justify-content: left;
-    padding: 220px 100px;
+    padding: 250px 100px;
+   
 }
 .heading {
     
@@ -267,7 +272,7 @@ i {
     line-height: 75px;
 }
 .heading p {
-    margin-left: 30px;
+    
     color: white;
     text-align: left;
 }
@@ -282,8 +287,12 @@ i {
     padding-left: 1rem;
 
 }
+#logout a:hover {
+    color: red;
+    background-color: white;
+}
 a:active {
-    color: #11101b;
+    color: #1c4966;
     background: white;
 }
 
@@ -336,6 +345,9 @@ a:active {
         width:80%;
         padding: 0 3rem;
         
+    }
+    #small-text {
+    display: none;
     }
     #reg-container-inner2 {
         margin: 10px;
@@ -400,16 +412,16 @@ a:active {
 ul {
     box-sizing: border-box;
 }
-li a i{
-color: white;
-}
+
 .ri-home-line {
     color: #1c4966;
 }
 button i {
     color: #fefefe;
 }
-
+ a i:hover {
+    color: #1c4966;
+}
 #role {
     padding: 0.2rem;
     border-radius: 10px;

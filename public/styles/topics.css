@@ -43,9 +43,7 @@
     transform: scaleX(1.05);
     transition: 0.4s;
 }
-.item #main {
-    height: 6rem;
-}
+
 .item #main span {
     text-align: center;
     font-size: larger;
@@ -121,7 +119,7 @@ button i {
 }
 .center2 {
     
-        width: 60%;
+        min-width: 60%;
         color: #1c4966;
         background-color: white;
         display: flex;
@@ -228,11 +226,14 @@ button i {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    
 
 }
+#comment-box form {
+    width: 100%;
+}
 #comment {
-    width: 100vh;
+    width: 100%;
     border: 1px solid black;
     border-radius: 25px;
     color: black;
@@ -446,6 +447,12 @@ button i {
 @media only screen and (max-width:900px){
 .center2,#add-material {
     width: 90%;
+}
+.center2 {
+    padding: 3rem 0.5rem;
+}
+#options {
+    flex-direction: column;
 }
 #content {
     background-size: cover;

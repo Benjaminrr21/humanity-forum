@@ -7,6 +7,12 @@
     border-radius: 20px;
     box-shadow: 7px 10px 10px 7px;
 }
+#whole i {
+    color: #1c4966;
+}
+.nav-bar i:hover {
+    color: #1c4966;
+}
 .titlee {
     color: #1c4966;
     text-align: center;

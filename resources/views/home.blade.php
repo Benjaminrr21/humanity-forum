@@ -7,7 +7,7 @@
     <div class='heading'>
         <div id='heading-inner'>
             <h1>Neka tvoja humanost bude primećena.</h1>
-            <p>Mesto gde humanitarnost i saosećanje sa drugima izlazi na videlo.</p>
+            <p id="small-text">Mesto gde humanitarnost i saosećanje sa drugima izlazi na videlo.</p>
             
         </div>
     </div>

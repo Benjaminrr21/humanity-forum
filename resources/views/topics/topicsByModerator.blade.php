@@ -24,7 +24,7 @@
 
                 <div id="main">
                     <h1>{{ $topic->name }}</h1>
-                    <span><i class="ri-group-fill"></i> {{ $topic->numOfFollowers }}</span>
+                    <span><i style="color: #1c4966;" class="ri-group-fill"></i> {{ $topic->numOfFollowers }}</span>
                 </div>
                 
                 <div id="options">

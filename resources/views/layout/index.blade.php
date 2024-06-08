@@ -112,19 +112,22 @@
                 
                 @if(Auth::user() && Auth::user()->role_id == 1) 
                     <li class="dropdown">
-                        <a class="{{ request()->routeIs('registrations') ? 'active' : '' }}" id="admin-requests" href="{{route('registrations')}}"><i id="rifill" class="ri-notification-fill"></i> Zahtevi</a>
+                        <a class="{{ request()->routeIs('registrations') ? 'active' : '' }}" id="admin-requests" href="{{route('registrations')}}"><i class="ri-send-plane-2-line"></i> Zahtevi</a>
                         
                     </li>
                 @endif
                
                 @if(Auth::user() && Auth::user()->role_id == 1)
                 <li>
-                    <a  id="news" href="/addnews"><span style="color: white;">Pošalji vest</span></a>
+                    <a  id="news" href="/addnews"><i class="ri-chat-4-line"></i> Pošalji vest</a>
+                </li>
+                <li>
+                    <a class="{{ request()->routeIs('get-users-view') ? 'active' : '' }}" id="news" href="/users"><i class="ri-id-card-line"></i> Korisnici</a>
                 </li>
                 @else
                     @if(Auth::user())
                     <li>
-                        <a id="news" href="/news"><span id="n" style="color: white;"><i class="ri-file-list-3-line"></i> Vesti</span></a>
+                        <a id="news" href="/news"><span id="n" ><i class="ri-file-list-3-line"></i> Vesti</span></a>
 
                     </li>
                     @endif

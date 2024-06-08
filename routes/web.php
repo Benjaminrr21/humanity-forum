@@ -52,7 +52,8 @@ Route::delete('/delete-user/{idUser}/{idTopic}',[UserAuthController::class,'dele
 Route::delete('/delete-user-all/{idUser}/{idModerator}',[UserAuthController::class,'delete_all'])->name('delete-user-all');
 Route::get('/all-users',[UserAuthController::class,'getAllUsers'])->name('all-users');
 Route::get('/check-email',[UserAuthController::class,'checkEmail'])->name('check-email');
-
+Route::get('/users',[UserAuthController::class,'get_users_view'])->name('get-users-view');
+Route::delete('/users/{id}',[UserAuthController::class,'delete_user_classic'])->name('delete-user-classic');
 Route::get('/registrations',[UserAuthController::class,'getRegistrationsView'])->name('registrations');
 
 

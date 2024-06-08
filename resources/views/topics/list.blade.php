@@ -29,13 +29,15 @@
                 @if($topic->isOpen==0)<span id="closed" >Zatvorena</span>@endif
                 <div id="main">
                     <h1>{{ $topic->name }}</h1>
-                    
-                    <span><i class="ri-group-fill"></i> {{ $topic->followers->count() }}</span>
+                    <span><i style="color:#1c4966;" class="ri-group-fill"></i> {{ $topic->followers->count() }}</span>
                     <p>Moderator: <a style="color: #1c4966;" href='mailto:{{$topic->moderator->email}}'><b>{{$topic->moderator->username}}</b></a></p>
+
                     
                 </div>
                 <div id="options">
-                    
+                    <div>
+
+                    </div>
                      @if(Auth::user() && Auth::user()->role_id==1)
                    {{--     @if(Auth::user()->following->contains($topic->id)) --}}
                             <div id="btn-option">   
