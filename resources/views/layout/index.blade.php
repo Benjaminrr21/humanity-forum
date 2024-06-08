@@ -122,10 +122,12 @@
                     <a  id="news" href="/addnews"><span style="color: white;">Pošalji vest</span></a>
                 </li>
                 @else
-                <li>
-                    <a id="news" href="/news"><span id="n" style="color: white;"><i class="ri-file-list-3-line"></i> Vesti</span></a>
+                    @if(Auth::user())
+                    <li>
+                        <a id="news" href="/news"><span id="n" style="color: white;"><i class="ri-file-list-3-line"></i> Vesti</span></a>
 
-                </li>
+                    </li>
+                    @endif
                 @endif  
                 @guest
                 <li>
