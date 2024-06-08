@@ -36,22 +36,39 @@
                 </div>
                 <div id="options">
                     
-                    @if(Auth::user() && Auth::user()->role_id==3)
-                        @if(Auth::user()->following->contains($topic->id))
+                     @if(Auth::user() && Auth::user()->role_id==1)
+                   {{--     @if(Auth::user()->following->contains($topic->id)) --}}
                             <div id="btn-option">   
                                 <form  action="{{route('topic-id',['id'=>$topic->id])}}">
                                     @csrf
                                 <button><i class="ri-edit-2-line"></i> Uđi u temu</button>
                                 </form>
                             </div>
-                        @else
-                        <div id="btn-option">   
+                        {{-- @else --}}
+                        {{-- <div id="btn-option">   
                             <form method="POST" action="{{route('follow-topic',['idUser'=>Auth::user()->id,'idTopic'=>$topic->id])}}">
                                 @csrf
                             <button><i class="ri-add-circle-fill"></i> Pridruži se temi</button>
                             </form>
-                        </div>
-                        @endif
+                        </div> --}}
+                       {{--  @endif--}}
+                    @endif 
+                    @if(Auth::user() && Auth::user()->role_id == 3)
+                    @if(!Auth::user()->following->contains($topic->id))
+                    <div id="btn-option">   
+                        <form method="POST" action="{{route('follow-topic',['idUser'=>Auth::user()->id,'idTopic'=>$topic->id])}}">
+                            @csrf
+                        <button><i class="ri-add-circle-fill"></i> Pridruži se temi</button>
+                        </form>
+                    </div>
+                    @else
+                    <div id="btn-option">   
+                        <form  action="{{route('topic-id',['id'=>$topic->id])}}">
+                            @csrf
+                        <button><i class="ri-edit-2-line"></i> Uđi u temu</button>
+                        </form>
+                    </div>
+                    @endif
                     @endif
                 
                     

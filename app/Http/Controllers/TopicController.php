@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\Comment;
@@ -13,8 +14,10 @@ use Illuminate\Support\Facades\Notification;
 use App\Events\RegisterUser;
 use App\Notifications\news;
 use App\Models\Newss2;
+use App\Models\follower;
 use Illuminate\Support\Facades\Auth;
 use App\Events\MessageFromModerator;
+use App\Events\NewFollower;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Alert;
 
@@ -64,8 +67,8 @@ class TopicController extends Controller
        $topic->save();
 
 
-       return "KREIRANA TEMA";
-        //return redirect()->route('topic-id',['id'=>$topic->id]);
+       return view('home')->with('waiting','Predlog teme je poslat na odobravanje.');
+       //return redirect()->route('topic-id',['id'=>$topic->id]);
         }
     }
     public function getById($id){
@@ -106,13 +109,19 @@ class TopicController extends Controller
 
     $topic->followers()->attach($idUser);
     //$user->following()->attach($idTopic);
+    $f = new follower();
+    $f->idM = $topic->owner_id;
+    $f->content = "Na temi ".$topic->name." imate novog pratioca: ".$user->username." .";
+    $f->save();
+    event(new NewFollower("Na temi ".$topic->name." imate novog pratioca: ".$user->username." .",$topic->owner_id));
 
+    
     return back();
     }
     public function topicsOfModerator($idModerator){
         ///$us = User::find($idModerator);
         //$topics = Topic::where('owner_id',$idUser)->get();
-        $myTopics = Topic::where('owner_id',$idModerator)->get();
+        $myTopics = Topic::where(['owner_id'=>$idModerator,'isAccepted'=>1])->get();
         return view('topics.topicsByModerator')->with('topics',$myTopics);
     }
 
@@ -130,6 +139,10 @@ class TopicController extends Controller
 
         $badUser = $maxDislikesComment ? $maxDislikesComment->user : null;
         
+        if ($badUser) {
+            Session::put('baduser_id', $badUser->id);
+        }
+
         return $badUser;
     }
     public function myUsers($id){
@@ -141,8 +154,8 @@ class TopicController extends Controller
         //return redirect()->route('my-users',['id'=>$id])->with('users',$myusers);
         return view('topics.myUsers')->with(['users'=>$myusers,'topic'=>$t,'baduser'=>$bu]);
     }
-    public function alert($email){
-        Mail::to($email)->send(new Alert([]));
+    public function alert($id){
+        Mail::to($id)->send(new Alert([]));
         return back();
     }
     public function addPollIndex($id){

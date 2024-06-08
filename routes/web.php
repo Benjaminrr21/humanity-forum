@@ -49,13 +49,14 @@ Route::post('/login_user',[UserAuthController::class,'login_user'])->name('login
 Route::get('logout',[UserAuthController::class,'logout'])->name('logout');
 Route::get('change-password',[UserAuthController::class,'changePassword'])->name('change-password');
 Route::delete('/delete-user/{idUser}/{idTopic}',[UserAuthController::class,'delete'])->name('delete-user');
+Route::delete('/delete-user-all/{idUser}/{idModerator}',[UserAuthController::class,'delete_all'])->name('delete-user-all');
 Route::get('/all-users',[UserAuthController::class,'getAllUsers'])->name('all-users');
 Route::get('/check-email',[UserAuthController::class,'checkEmail'])->name('check-email');
 
 Route::get('/registrations',[UserAuthController::class,'getRegistrationsView'])->name('registrations');
 
 
-Route::get('/topics',[TopicController::class,'getAll']);
+Route::get('/topics',[TopicController::class,'getAll'])->name('topics');
 Route::get('/add-topic',[TopicController::class,'topicIndex']);
 Route::post('/add-topic-create/{id}',[TopicController::class,'create'])->name('add-topic-create');
 Route::get('/topics/{id}',[TopicController::class,'getById'])->name('topic-id');
@@ -65,7 +66,7 @@ Route::post('/follow-topic/{idTopic}/{idUser}',[TopicController::class,'followTo
 Route::get('/my-topics/{idUser}',[TopicController::class,'myTopics'])->name('my-topics');
 Route::get('/topics-by-moderator/{idModerator}',[TopicController::class,'topicsOfModerator'])->name('topics-by-moderator');
 Route::delete('/delete-topic/{id}',[TopicController::class,'deleteTopic'])->name('deletetopic');
-Route::get('/alert',[TopicController::class,'alert'])->name('alert');
+Route::get('/alert/{id}',[TopicController::class,'alert'])->name('alert');
 
 Route::get('/search',[TopicController::class,'search'])->name('search');
 Route::post('/addnews2/{id}',[TopicController::class,'addNews'])->name('add-news2');

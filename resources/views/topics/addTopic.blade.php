@@ -20,13 +20,15 @@
             <div class="labelinput2">
                 <label for="description">Opis teme</label>
                 <textarea rows="3" cols="10" id="desc" name="content"></textarea>
-                
                 <label for="material" id='label-photo'><i style="color: white;" class="ri-file-line"></i> Dodaj fajl uz opis (opciono)
                     <input  id="material" type='file' placeholder='Fajl...' name='file'></input>
                     </label>
 
                 {{-- <button id="add-material" type="button"><label for="file"><i class="ri-file-add-line"></i> Dodaj fajl uz opis</label></button>
+
                 <input type="file" name="file" id='material'> --}}
+                <small>Napomena: Zahtev za kreiranjem teme poslaće se administratoru. Bićete obavešteni o odobravanju vaše teme.</small>
+            
             </div>
             <button type="submit" id="add-topic"><i class="ri-add-line"></i> Kreiraj temu</button>
         </form>

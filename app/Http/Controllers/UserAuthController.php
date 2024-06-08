@@ -26,6 +26,7 @@ use App\Mail\SendCode;
 
 use App\Models\Newss;
 use App\Models\Newss2;
+use App\Models\follower;
 
 class UserAuthController extends Controller
 {
@@ -164,6 +165,17 @@ class UserAuthController extends Controller
         $user->save();
         return redirect()->route('delete-user');        
     }
+    public function delete_all($idUser,$idModerator){
+        $user = User::find($idUser);
+        foreach ($user->following as $t) {
+            if($t->owner_id == $idModerator){
+                $user->following()->detach($t->id);
+            }
+        }
+        //$user->delete();
+        $user->save();
+        return back();       
+    }
     public function changePassword(){
         return view('changePassword');
     }
@@ -275,7 +287,8 @@ class UserAuthController extends Controller
         $news = Newss::all();
         $news2 = Newss2::all();
         $topics = Topic::all();
-        return view('news')->with(['news'=>$news,'news2'=>$news2,'topics'=>$topics]);
+        $followers = follower::all();
+        return view('news')->with(['news'=>$news,'news2'=>$news2,'topics'=>$topics,'followers'=>$followers]);
     }
 
 }

@@ -28,6 +28,7 @@
                 @endforeach
 
             </table>
+            @if(Auth::user() && Auth::user()->role_id == 3)
             <h1>Obaveštenja od moderatora tema koje pratite </h1>
 
             <table id="admin-messagess">
@@ -49,6 +50,23 @@
                 @endforeach
 
             </table>
+            @endif
+            @if(Auth::user() && Auth::user()->role_id == 2)
+            <h1>Novi pratioci </h1>
+
+            <table id="admin-messagess">
+
+                @foreach ($followers as $f)
+                @if($f->idM == Auth::user()->id)
+                <tr>
+                    <td>{{$f->content}}</td>
+                    <td>{{$f->created_at}}</td>
+                </tr>
+                @endif
+                @endforeach
+
+            </table>
+            @endif
 
            {{--  <div id="flexx">
                 @foreach ($news as $n)

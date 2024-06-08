@@ -1,6 +1,9 @@
 @extends('layout.index')
 @section('content')
 <div id='homepage-container'>
+    @if($waiting = Session::Get('waiting'))
+    <p>{{$waiting}}</p>
+    @endif
     <div class='heading'>
         <div id='heading-inner'>
             <h1>Neka tvoja humanost bude primećena.</h1>

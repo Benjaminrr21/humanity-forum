@@ -17,12 +17,13 @@ padding: 5rem ;
 #table-div {
     padding: 1rem;
 }
-#table-div table {
+ #tbl {
     width: 100%;
     margin-top: 2rem;
 }
-#table-div table td {
-    padding: 0.5rem;
+ #tbl td {
+    padding: 0.1rem 0.5rem;
+    text-align: center;
 }
 .user-options{
     background-color: red;
@@ -57,4 +58,94 @@ padding: 5rem ;
 #req {
     text-align: center;
     margin-bottom: 3rem;
+}
+#user-options2{
+    background-color: rgb(55, 87, 55);
+    color: white;
+    border-radius: 10px;
+    padding: 0.4rem;
+    text-align: center;
+}
+#tablee {
+display: flex;
+}
+#bu {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(128, 161, 128);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+}
+@media only screen and (max-width:900px){
+#inner {
+    min-width: 100%;
+}
+#content-outer-users {
+padding: 0.5rem;
+}
+#tabledivinner {
+    flex-direction: column;
+}
+}
+
+/* styles/users.css */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+    table thead {
+        display: none;
+    }
+    .user-options {
+        padding: 0.2rem;
+        margin-left: 10rem;
+    }
+    #bu {
+        flex-direction: column;
+    }
+
+    table, table tbody, table tr, table td {
+        display: block;
+        width: 100%;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+    }
+
+    table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
 }

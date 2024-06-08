@@ -64,6 +64,11 @@
             
       }); 
       } 
+      channel.bind('new-follower'+loggedInUser.id, function(data) {
+            alert(data.mess);
+           // console.log(data);
+            //document.getElementById("n").style.color = "red";
+      });
     
      
       
@@ -81,11 +86,11 @@
         <nav class='nav-bar'>
             <ul>
                 <li>
-                    <a class="active" href="{{ route('home') }}" ><i class="ri-home-line"></i> Home</a>
+                    <a class="{{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}" ><i class="ri-home-line"></i> Home</a>
                 </li>
                 @if(Auth::user() && Auth::user()->role_id == 2)
                 <li>
-                    <a href="{{route('topics-by-moderator',['idModerator'=>Auth::user()->id])}}" ><i class="ri-message-3-line"></i> Moje teme</a>
+                    <a class="{{ request()->routeIs('topics-by-moderator') ? 'active' : '' }}" href="{{route('topics-by-moderator',['idModerator'=>Auth::user()->id])}}" ><i class="ri-message-3-line"></i> Moje teme</a>
                 </li>
                 @endif
                 @if(Auth::user() && Auth::user()->role_id == 3)
@@ -93,7 +98,7 @@
                     <a href="/topics" ><i class="ri-message-3-line"></i> Teme</a>
                 </li> --}}
                 <li>
-                    <a href="{{route('my-topics',['idUser'=>Auth::user()->id])}}" ><i class="ri-message-3-line"></i> Teme koje pratim</a>
+                    <a class="{{ request()->routeIs('my-topics') ? 'active' : '' }}" href="{{route('my-topics',['idUser'=>Auth::user()->id])}}" ><i class="ri-message-3-line"></i> Teme koje pratim</a>
                 </li>
                 @endif
                 @if(Auth::user() && Auth::user()->role_id == 1)
@@ -101,35 +106,30 @@
                     <a href="/topics" ><i class="ri-message-3-line"></i> Teme</a>
                 </li> --}}
                 <li>
-                    <a href="/topics"><i class="ri-message-3-line"></i> Sve teme</a>
+                    <a class="{{ request()->routeIs('topics') ? 'active' : '' }}" href="/topics"><i class="ri-message-3-line"></i> Sve teme</a>
                 </li>
                 @endif
                 
                 @if(Auth::user() && Auth::user()->role_id == 1) 
                     <li class="dropdown">
-                        <a id="admin-requests" href="{{route('registrations')}}"><i id="rifill" class="ri-notification-fill"></i> Zahtevi</a>
+                        <a class="{{ request()->routeIs('registrations') ? 'active' : '' }}" id="admin-requests" href="{{route('registrations')}}"><i id="rifill" class="ri-notification-fill"></i> Zahtevi</a>
                         
                     </li>
                 @endif
-                <li>
-                    <form action="{{route('search')}}" method="GET">
-                    <input name='search' type="text" id="search" placeholder="Pretraga...">
-                    <button type="submit" id="search-button"><i class="ri-search-line"></i></button>
-                    </form>
-                </li>
+               
                 @if(Auth::user() && Auth::user()->role_id == 1)
                 <li>
-                    <a id="news" href="/addnews"><span style="color: white;">Pošalji vest</span></a>
+                    <a  id="news" href="/addnews"><span style="color: white;">Pošalji vest</span></a>
                 </li>
                 @else
                 <li>
-                    <a id="news" href="/news"><span id="n" style="color: white;">Vesti</span></a>
+                    <a id="news" href="/news"><span id="n" style="color: white;"><i class="ri-file-list-3-line"></i> Vesti</span></a>
 
                 </li>
                 @endif  
                 @guest
                 <li>
-                    <a href="{{ route('registration') }}" ><i class="ri-login-box-line"></i> Registracija</a>
+                    <a class="{{ request()->routeIs('registration') ? 'active' : '' }}" href="{{ route('registration') }}" ><i class="ri-login-box-line"></i> Registracija</a>
                 </li>
                 @else
                 <li id="logout">
@@ -155,6 +155,31 @@
     
     <script {{-- src="{{ asset('javascript/index.js') }}" --}}>
     
+
+    // Pronađi sve linkove unutar navigacije
+var aa = document.querySelectorAll('.nav-bar ul li a');
+
+// Prođi kroz sve linkove i dodaj event listener za klik
+aa.forEach(element => {
+    element.addEventListener("click", (e) => {
+        // Spreči podrazumevanu akciju linka
+        e.preventDefault();
+
+        // Ukloni aktivnu klasu sa svih linkova
+        aa.forEach(link => link.classList.remove('active'));
+
+        // Dodaj aktivnu klasu na kliknuti link
+        element.classList.add('active');
+        
+        // Izvrši navigaciju na ciljnu stranicu
+        window.location.href = element.href;
+    });
+});
+
+// Dodaj event listener za meni toggle dugme
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.querySelector('.nav-bar').classList.toggle('active');
+});
 
         document.getElementById('menu-toggle').addEventListener('click', function() {
     

@@ -60,6 +60,7 @@ background-color: transparent;
     background: white;
     transition: 0.7s;
 }
+
  .nav-bar ul li a.active {
      background-color: white;
      color: #11101b;
