@@ -179,9 +179,9 @@ aa.forEach(element => {
 });
 
 // Dodaj event listener za meni toggle dugme
-document.getElementById('menu-toggle').addEventListener('click', function() {
+/* document.getElementById('menu-toggle').addEventListener('click', function() {
     document.querySelector('.nav-bar').classList.toggle('active');
-});
+}); */
 
         document.getElementById('menu-toggle').addEventListener('click', function() {
     
