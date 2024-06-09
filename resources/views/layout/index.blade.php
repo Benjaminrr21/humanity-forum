@@ -141,6 +141,9 @@
                 <li>
                     <a class="{{ request()->routeIs('registration') ? 'active' : '' }}" href="{{ route('registration') }}" ><i class="ri-login-box-line"></i> Registracija</a>
                 </li>
+                <li>
+                    <a class="{{ request()->routeIs('topics') ? 'active' : '' }}" href="/topics"><i class="ri-message-3-line"></i> Teme</a>
+                </li>
                 @else
                 <li id="logout">
                     <a href="{{ route('logout') }}" ><i class="ri-logout-box-line"></i> Odjavi se</a>

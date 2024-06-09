@@ -31,10 +31,16 @@
 @section('content')
     <div id='reg-container'>
         <div id='reg-container-inner'>
+        @if ($find = Session::get('find'))
+            <p>{{$find}}</p>
+        @endif
             <h1>Prijava</h1>
             {{-- @if ($msg = Session::get('msg')) --}}
+        @if (!($find = Session::get('find')))
+
             <h4>Korisničko ime Vam je poslato na mejl adresu.</h4>
-           {{--  @endif --}}
+        @endif
+            {{--  @endif --}}
             <div id='form'>
                 <form action="{{ route('login_user') }}" method='post'>
                     @csrf

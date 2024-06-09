@@ -63,7 +63,7 @@
                            </div>
                            <div class='labelinput'>
                             <i class="ri-calendar-event-line"></i>
-                                <input type="date" placeholder='Datum rodjenja' id='dateofbirth' name='dateofbirth'></input>
+                                <input type="date" placeholder='Datum rodjenja' id='dateofbirth' name='dateofbirth' max="2006-06-10"></input>
                        </div>
                        <div class='dupli'>
                         <i class="ri-men-line"></i>
