@@ -69,6 +69,11 @@
            // console.log(data);
             //document.getElementById("n").style.color = "red";
       });
+      channel.bind('notification'+loggedInUser.id, function(data) {
+            alert(data.m);
+           // console.log(data);
+            //document.getElementById("n").style.color = "red";
+      });
     
      
       

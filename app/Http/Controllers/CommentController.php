@@ -8,6 +8,8 @@ use App\Models\Comment;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\Reply;
+use App\Events\NotificationFromTopic;
+
 
 class CommentController extends Controller
 {
@@ -19,6 +21,14 @@ class CommentController extends Controller
         $comment->user_id = $idUser;
         $comment->username = User::find($idUser)->email;
         $comment->save();
+        $t = Topic::find($idTopic);
+        $followers = Topic::find($idTopic)->followers()->get();
+        foreach ($followers as $f) {
+            # code...
+            if($f->id != $idUser){
+        event(new NotificationFromTopic("Na temi ".$t->name." dodat je novi komentar.",$f->id));
+            }    
+    }
 
 
         return back();
