@@ -20,6 +20,7 @@
          <div class="list">
             @foreach($topics as $topic)
             <div class="item">
+                @if($topic->isOpen==0)<span id="closed" ><i style="color: white;" class="ri-key-line"></i> Zatvorena</span>@endif
                 <div id="main">
                     <h1>{{ $topic->name }}</h1>
                     <span><i class="ri-group-fill"></i> {{ $topic->followers->count() }}</span>
@@ -33,21 +34,22 @@
                     <div id="btn-option">
                         <a href="{{ route('topic-id',['id'=>$topic->id]) }}"><button ><i class="ri-edit-2-line"></i> Uđi u temu</button></a>
                     </div>        
-                        <div id="myModal" class="modal">
+                        {{-- <div id="myModal" class="modal">
                                 aaa
                                 <div class="modal-content">
                                     <span class="close">&times;</span>
                                     <p>Zatvaranje teme...</p>
                                 </div>
-                            </div>
+                            </div> --}}
                     </div>
                 </div>
+                @endforeach
+
             </div>
-            @endforeach
+            @endif 
              
         </div>
-        @endif 
-    </div>
+    
 </div>
 
 <script>
