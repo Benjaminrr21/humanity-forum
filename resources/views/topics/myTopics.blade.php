@@ -15,7 +15,7 @@
         <p>Nema otvorenih tema.</p>
         @else
     
-         <div id="heading">Teme koje pratim</div>
+         <div id="heading">Teme koje pratimmm</div>
         <span></span>
          <div class="list">
             @foreach($topics as $topic)
