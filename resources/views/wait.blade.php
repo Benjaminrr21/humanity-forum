@@ -68,7 +68,7 @@
         var serverCode = "{{ $code }}";
         var userId = "{{ $user->id }}"
 
-        alert(userId)
+        //alert(userId)
         console.log(serverCode);
 
        

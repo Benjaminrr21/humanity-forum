@@ -188,7 +188,7 @@ class UserAuthController extends Controller
         /*if($u) {
             return back()->with('find',$u->id);
         }*/
-        return back()->with('find', "Uspena promena.");
+        return back()->with('find', "Uspešna promena. Unesite podatke za prijavu.");
         /* $user = User::find($id);
         $user->password = Hash::make($r->newPassword);
         $user->save();
