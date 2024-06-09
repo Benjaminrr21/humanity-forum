@@ -135,9 +135,16 @@ class TopicController extends Controller
         $flws = $t->followers()->get();
         $comments = $t->comments()->get();
 
-        $maxDislikesComment = $comments->sortByDesc('dislikes')->first();
+        $filteredComments = $comments->filter(function($comment) {
+            return $comment->dislikes > 5;
+        });
 
-        $badUser = $maxDislikesComment ? $maxDislikesComment->user : null;
+        
+    // Nađi komentar sa najviše dislajkova među filtriranim komentarima
+    $maxDislikesComment = $filteredComments->sortByDesc('dislikes')->first();
+
+    // Izvuci korisnika iz komentara sa najviše dislajkova
+    $badUser = $maxDislikesComment ? $maxDislikesComment->user : null;
         
         if ($badUser) {
             Session::put('baduser_id', $badUser->id);
