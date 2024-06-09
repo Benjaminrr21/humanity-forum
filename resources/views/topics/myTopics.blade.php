@@ -16,7 +16,7 @@
         @else
     
          <div id="heading">Teme koje pratim</div>
-        
+        <span></span>
          <div class="list">
             @foreach($topics as $topic)
             <div class="item">
