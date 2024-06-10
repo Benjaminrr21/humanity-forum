@@ -72,7 +72,7 @@
         @else
         <div class="buttons2">
                 
-            @if($topic->polls->count() != 0 && Auth::user()->id==3)
+            @if($topic->polls->count() != 0 && Auth::user()->role_id==3)
             <form action="{{route('poll',['id'=>$topic->id])}}" method="GET">
                 @csrf
                 <button class="blue-buttons" type="submit" id="my-users"><i class="ri-newspaper-line"></i> Anketa</button>
